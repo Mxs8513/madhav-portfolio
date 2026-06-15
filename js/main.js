@@ -1,0 +1,77 @@
+// Mobile menu toggle + sidebar scroll-spy + reveal-on-scroll. No dependencies.
+
+// ----- Reveal-on-scroll (skipped entirely under prefers-reduced-motion;
+//       content is fully visible without JS or with motion disabled) -----
+(function () {
+  if (window.matchMedia("(prefers-reduced-motion: reduce)").matches) return;
+  if (!("IntersectionObserver" in window)) return;
+
+  const targets = document.querySelectorAll(".card, .section-title, .hero-actions");
+  const observer = new IntersectionObserver(
+    (entries) => {
+      for (const entry of entries) {
+        if (entry.isIntersecting) {
+          entry.target.classList.add("is-visible");
+          observer.unobserve(entry.target);
+        }
+      }
+    },
+    { rootMargin: "0px 0px -8% 0px", threshold: 0.05 }
+  );
+
+  targets.forEach((el) => {
+    el.classList.add("reveal");
+    observer.observe(el);
+  });
+
+  // Safety net: never leave content hidden if the observer misbehaves
+  // (e.g. unusual embedded/headless contexts).
+  setTimeout(() => {
+    document.querySelectorAll(".reveal:not(.is-visible)").forEach((el) => {
+      const rect = el.getBoundingClientRect();
+      if (rect.top < window.innerHeight && rect.bottom > 0) el.classList.add("is-visible");
+    });
+  }, 1500);
+})();
+
+(function () {
+  const toggle = document.querySelector(".topbar-toggle");
+  const sidebarLinks = document.querySelectorAll(".sidebar-links a");
+
+  // ----- Mobile menu -----
+  toggle.addEventListener("click", () => {
+    const open = document.body.classList.toggle("menu-open");
+    toggle.setAttribute("aria-expanded", String(open));
+  });
+
+  sidebarLinks.forEach((link) =>
+    link.addEventListener("click", () => {
+      document.body.classList.remove("menu-open");
+      toggle.setAttribute("aria-expanded", "false");
+    })
+  );
+
+  // ----- Scroll-spy: highlight the sidebar link for the section in view -----
+  const sections = [...sidebarLinks]
+    .map((link) => document.querySelector(link.getAttribute("href")))
+    .filter(Boolean);
+
+  const setActive = (id) => {
+    sidebarLinks.forEach((link) =>
+      link.classList.toggle("is-active", link.getAttribute("href") === "#" + id)
+    );
+  };
+
+  const onScroll = () => {
+    // The active section is the last one whose top has passed 1/3 of the viewport.
+    const probe = window.scrollY + window.innerHeight / 3;
+    let current = sections[0];
+    for (const section of sections) {
+      if (section.offsetTop <= probe) current = section;
+    }
+    if (current) setActive(current.id);
+  };
+
+  window.addEventListener("scroll", onScroll, { passive: true });
+  onScroll();
+})();
