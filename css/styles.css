@@ -1142,6 +1142,206 @@ a { color: var(--accent); }
   box-shadow: 0 2px 5px rgba(17, 17, 26, 0.05), 0 22px 52px rgba(124, 58, 237, 0.16);
 }
 
+/* —— Featured research paper (EnclaveSplit) —— */
+
+.research-feature {
+  margin: 28px 0 16px;
+  padding: clamp(28px, 4.5vw, 52px);
+  box-shadow: var(--shadow-glow);
+}
+.research-feature:hover {
+  box-shadow: 0 2px 4px rgba(17, 17, 26, 0.05), 0 22px 56px rgba(124, 58, 237, 0.14);
+}
+
+.research-feature-head { margin-bottom: 26px; }
+
+.research-byline {
+  font-size: 14.5px;
+  color: var(--text-faint);
+  margin-top: 12px;
+}
+
+/* Preprint / DOI badge — signals published, citable research */
+.research-preprint {
+  display: flex;
+  align-items: center;
+  flex-wrap: wrap;
+  gap: 10px 12px;
+  margin-top: 14px;
+}
+.doi-badge {
+  display: inline-flex;
+  align-items: center;
+  gap: 7px;
+  font-size: 13px;
+  font-weight: 600;
+  letter-spacing: -0.01em;
+  color: var(--accent);
+  background: var(--accent-tint);
+  border: 1px solid var(--accent-border);
+  border-radius: 980px;
+  padding: 6px 14px;
+  text-decoration: none;
+  box-shadow: 0 1px 3px rgba(124, 58, 237, 0.10);
+  transition: background 0.18s ease, border-color 0.18s ease, transform 0.18s ease, box-shadow 0.18s ease;
+}
+.doi-badge:hover {
+  background: #efe7ff;
+  transform: translateY(-1px);
+  box-shadow: 0 2px 8px rgba(124, 58, 237, 0.16);
+}
+.doi-badge svg { margin-left: -1px; }
+.doi-text {
+  font-size: 13px;
+  color: var(--text-faint);
+}
+.doi-id {
+  font-family: var(--mono);
+  font-size: 12px;
+  color: var(--text-dim);
+}
+
+/* Clear full poster image, shown right under the byline */
+.research-poster {
+  display: block;
+  margin: 0 0 32px;
+  text-decoration: none;
+}
+.research-poster img {
+  display: block;
+  width: 100%;
+  height: auto;
+  border: 1px solid var(--border-strong);
+  border-radius: var(--radius);
+  background: var(--card);
+  box-shadow: 0 2px 5px rgba(17, 17, 26, 0.05), 0 24px 60px rgba(17, 17, 26, 0.12);
+  transition: transform 0.3s ease, box-shadow 0.3s ease;
+}
+.research-poster:hover img {
+  transform: translateY(-2px);
+  box-shadow: 0 3px 6px rgba(17, 17, 26, 0.05), 0 28px 68px rgba(124, 58, 237, 0.16);
+}
+.research-poster-cap {
+  display: block;
+  margin-top: 10px;
+  font-size: 12.5px;
+  color: var(--text-faint);
+  font-style: italic;
+}
+
+.research-explain { margin-bottom: 32px; }
+.research-explain p {
+  font-size: 16.5px;
+  color: var(--text-dim);
+  line-height: 1.7;
+  max-width: 70ch;
+}
+.research-explain p + p { margin-top: 16px; }
+.research-explain strong { font-weight: 600; color: var(--accent-dark); }
+
+.research-feature-body {
+  display: grid;
+  grid-template-columns: 1.6fr 1fr;
+  gap: 48px;
+  margin-top: 32px;
+}
+.research-highlights h4,
+.research-side h4 {
+  font-size: 13px;
+  font-weight: 600;
+  text-transform: uppercase;
+  letter-spacing: 0.06em;
+  color: var(--text-faint);
+  margin: 0 0 14px;
+}
+.research-highlights strong { font-weight: 600; color: var(--accent-dark); }
+
+/* —— Tabbed document viewer (Paper / Poster) —— */
+
+.research-docs { margin-top: 40px; }
+
+.doc-tabs {
+  display: inline-flex;
+  gap: 4px;
+  padding: 4px;
+  background: var(--bg-tint);
+  border: 1px solid var(--border);
+  border-radius: 980px;
+  margin-bottom: 20px;
+}
+.doc-tab {
+  appearance: none;
+  border: 0;
+  background: transparent;
+  font-family: inherit;
+  font-size: 14.5px;
+  font-weight: 500;
+  color: var(--text-dim);
+  padding: 9px 24px;
+  border-radius: 980px;
+  cursor: pointer;
+  transition: background 0.18s ease, color 0.18s ease, box-shadow 0.18s ease;
+}
+.doc-tab:hover { color: var(--text); }
+.doc-tab.is-active {
+  background: var(--card);
+  color: var(--accent);
+  box-shadow: 0 1px 2px rgba(17, 17, 26, 0.06), 0 2px 8px rgba(124, 58, 237, 0.10);
+}
+.doc-tab:focus-visible {
+  outline: 2px solid var(--accent);
+  outline-offset: 2px;
+}
+
+.doc-panel.is-hidden { display: none; }
+
+.doc-meta {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+  justify-content: space-between;
+  gap: 16px;
+  margin-bottom: 18px;
+}
+.doc-desc {
+  font-size: 15px;
+  color: var(--text-dim);
+  max-width: 52ch;
+}
+.doc-actions {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 12px;
+}
+
+.doc-embed {
+  padding: 10px;
+  background: var(--card);
+  border: 1px solid var(--border);
+  border-radius: var(--radius-lg);
+  box-shadow: var(--shadow-soft);
+  overflow: hidden;
+}
+.doc-object,
+.doc-frame {
+  display: block;
+  width: 100%;
+  height: 1100px;
+  border: 0;
+  border-radius: var(--radius);
+  background: var(--bg-tint);
+}
+
+@media (max-width: 900px) {
+  .research-feature-body { grid-template-columns: 1fr; gap: 32px; }
+}
+@media (max-width: 720px) {
+  .doc-object,
+  .doc-frame { height: 78vh; }
+  .doc-tabs { display: flex; width: 100%; }
+  .doc-tab { flex: 1 1 auto; }
+}
+
 /* ============================== Experience ============================= */
 
 .exp-list {

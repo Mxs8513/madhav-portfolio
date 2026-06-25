@@ -544,47 +544,142 @@
           </div>
         </div>
       </article>
-
-      <!-- ——————— ADDITIONAL PROJECT · TIME MACHINE ——————— -->
-      <p class="additional-label">Additional Project</p>
-      <article class="project project--compact card" id="time-machine">
-        <header class="project-head">
-          <span class="project-number">Project 04</span><span class="wip-tag">Currently working on</span>
-          <h3 class="project-name">Time Machine GitHub Analyzer</h3>
-          <p class="project-category">Developer Tool</p>
-          <p class="project-summary">
-            An AI-powered GitHub analyzer that studies commit histories, file
-            diffs, and repository structure to summarize how a codebase
-            changed over time.
-          </p>
-        </header>
-        <div class="project-body">
-          <div class="project-desc">
-            <ul class="feature-list">
-              <li>Analyzes commit history and file diffs</li>
-              <li>Identifies architectural decisions and recurring code patterns</li>
-              <li>Helps reduce manual codebase ramp-up time</li>
-              <li>Built with Python, LLM APIs, and REST workflows</li>
-            </ul>
-          </div>
-          <div class="project-side">
-            <h4>Tech Stack</h4>
-            <ul class="pill-list">
-              <li>Python</li><li>LLM APIs</li><li>REST APIs</li><li>GitHub APIs</li>
-            </ul>
-            <h4>Links</h4>
-            <div class="project-links">
-              <!-- PLACEHOLDER: replace # with the Time Machine repo URL -->
-              <a class="btn btn-secondary" href="#" target="_blank" rel="noopener">GitHub</a>
-            </div>
-          </div>
-        </div>
-      </article>
     </section>
 
     <!-- ============================ RESEARCH ============================ -->
     <section class="section" id="research">
       <h2 class="section-title">Research</h2>
+      <p class="section-sub">
+        Undergraduate research in secure and efficient AI systems — read the full paper and conference poster below.
+      </p>
+
+      <!-- ——————— FEATURED RESEARCH · ENCLAVESPLIT ——————— -->
+      <article class="card research-feature" id="enclavesplit">
+        <header class="research-feature-head">
+          <span class="project-number">Research Paper</span>
+          <h3 class="project-name">Confidential ML Inference at the Untrusted Edge</h3>
+          <p class="project-category">EnclaveSplit — Low-Overhead Trusted Execution with ARM TrustZone &amp; Intel SGX</p>
+          <p class="research-byline">
+            Madhav (Sai) Suri&ensp;·&ensp;Advisor: Dr. Yi Ding&ensp;·&ensp;The University of Texas at Dallas
+          </p>
+          <p class="research-preprint">
+            <a class="doi-badge" href="https://doi.org/10.5281/zenodo.20840404" target="_blank" rel="noopener">
+              <svg viewBox="0 0 16 16" width="13" height="13" fill="none" stroke="currentColor" stroke-width="1.6" aria-hidden="true"><path d="M5 3h8v8M13 3 3 13"/></svg>
+              Preprint
+            </a>
+            <span class="doi-text">Published on Zenodo · <span class="doi-id">doi.org/10.5281/zenodo.20840404</span></span>
+          </p>
+        </header>
+
+        <!-- Clear full poster image -->
+        <a class="research-poster" href="assets/enclavesplit-poster.pdf" target="_blank" rel="noopener" aria-label="Open the EnclaveSplit research poster as a PDF">
+          <img
+            src="assets/enclavesplit-poster.png"
+            alt="EnclaveSplit research poster — Confidential ML Inference at the Untrusted Edge: abstract, background, threat model, confidential inference pipeline, per-workload latency overhead chart (~12% mean), comparison with prior systems, related and future work"
+            width="2400" height="1697"
+            loading="lazy"
+          />
+          <span class="research-poster-cap">Conference poster — click to open full-size PDF</span>
+        </a>
+
+        <!-- Plain-language explainer: what this actually is -->
+        <div class="research-explain">
+          <h4 class="story-title">In Plain Terms</h4>
+          <p>
+            When an AI model runs on a device you don't fully trust — a phone, an
+            IoT sensor, or a shared cloud server — both the user's <strong>input data</strong>
+            and the company's <strong>model</strong> are exposed to whoever controls that
+            hardware. You can lock the <em>entire</em> model inside a hardware-protected
+            "vault" (a Trusted Execution Environment), but that vault has very little memory,
+            so doing so makes the model painfully slow.
+          </p>
+          <p>
+            <strong>EnclaveSplit</strong> is my research prototype that asks a simple question:
+            what if you only protect the <em>most sensitive part</em> of the model instead of
+            all of it? It splits each neural network so that the privacy-critical
+            "decision-level" layers run inside the secure vault, while the rest runs at full
+            speed outside it. The result is private, verifiable AI inference at only
+            <strong>~12% extra cost</strong> — and the same code runs on both Intel SGX
+            (servers) and ARM TrustZone (edge devices) without changes.
+          </p>
+        </div>
+
+        <div class="metric-strip" aria-label="EnclaveSplit key results">
+          <div class="metric"><b>~12%</b><span>Latency overhead</span></div>
+          <div class="metric"><b>0%</b><span>Accuracy loss</span></div>
+          <div class="metric"><b>5</b><span>Edge-AI workloads</span></div>
+          <div class="metric"><b>2</b><span>Hardware TEE platforms</span></div>
+        </div>
+
+        <div class="research-feature-body">
+          <div class="research-highlights">
+            <h4>Highlights</h4>
+            <ul class="feature-list">
+              <li><strong>Selective partitioning</strong> — only the sensitive decision-level layers run inside the hardware enclave, keeping the trusted code base small</li>
+              <li><strong>One unified codebase</strong> targets both server-class Intel SGX and edge-class ARM TrustZone via the Open Enclave SDK — no source changes</li>
+              <li><strong>"Golden Partition Zone"</strong> split point, validated with a model-inversion attack (~4.5× higher reconstruction error vs. a shallow split)</li>
+              <li><strong>Remote attestation</strong> makes the privacy guarantee verifiable, not just asserted, before any private data is sent</li>
+              <li>Evaluated on MobileNetV2, ResNet-18, YOLOv8n, DeepLabV3, and TinyBERT with <strong>zero retraining</strong></li>
+            </ul>
+          </div>
+          <div class="research-side">
+            <h4>Topics</h4>
+            <ul class="pill-list">
+              <li>Secure ML Inference</li><li>Model Partitioning</li><li>ARM TrustZone</li><li>Intel SGX</li><li>Edge Computing</li><li>Open Enclave SDK</li><li>Privacy</li>
+            </ul>
+          </div>
+        </div>
+
+        <!-- ——— Tabbed document viewer: Paper / Poster ——— -->
+        <div class="research-docs" id="research-docs">
+          <div class="doc-tabs" role="tablist" aria-label="Research documents">
+            <button class="doc-tab is-active" role="tab" aria-selected="true" aria-controls="doc-paper" id="tab-paper" data-doc="paper">Paper</button>
+            <button class="doc-tab" role="tab" aria-selected="false" aria-controls="doc-poster" id="tab-poster" data-doc="poster">Poster</button>
+          </div>
+
+          <!-- Paper panel -->
+          <div class="doc-panel" role="tabpanel" id="doc-paper" aria-labelledby="tab-paper">
+            <div class="doc-meta">
+              <p class="doc-desc">The full research paper — background, threat model, cross-platform design, implementation, and evaluation.</p>
+              <div class="doc-actions">
+                <a class="btn btn-primary" href="assets/enclavesplit-paper.pdf" target="_blank" rel="noopener">Open Full Screen</a>
+                <a class="btn btn-secondary" href="assets/enclavesplit-paper.pdf" download>Download PDF</a>
+              </div>
+            </div>
+            <div class="doc-embed">
+              <object class="doc-object" data="assets/enclavesplit-paper.pdf#view=FitH" type="application/pdf" aria-label="EnclaveSplit research paper PDF">
+                <iframe class="doc-frame" src="assets/enclavesplit-paper.pdf#view=FitH" title="EnclaveSplit research paper PDF" loading="lazy"></iframe>
+                <p class="resume-fallback">
+                  Your browser can't display the embedded PDF.
+                  <a href="assets/enclavesplit-paper.pdf" target="_blank" rel="noopener">Open the paper in a new tab</a>.
+                </p>
+              </object>
+            </div>
+          </div>
+
+          <!-- Poster panel -->
+          <div class="doc-panel is-hidden" role="tabpanel" id="doc-poster" aria-labelledby="tab-poster" hidden>
+            <div class="doc-meta">
+              <p class="doc-desc">The conference poster — the same work distilled into a single visual board for presentation.</p>
+              <div class="doc-actions">
+                <a class="btn btn-primary" href="assets/enclavesplit-poster.pdf" target="_blank" rel="noopener">Open Full Screen</a>
+                <a class="btn btn-secondary" href="assets/enclavesplit-poster.pdf" download>Download PDF</a>
+              </div>
+            </div>
+            <div class="doc-embed">
+              <object class="doc-object" data="assets/enclavesplit-poster.pdf#view=FitH" type="application/pdf" aria-label="EnclaveSplit research poster PDF">
+                <iframe class="doc-frame" src="assets/enclavesplit-poster.pdf#view=FitH" title="EnclaveSplit research poster PDF" loading="lazy"></iframe>
+                <p class="resume-fallback">
+                  Your browser can't display the embedded PDF.
+                  <a href="assets/enclavesplit-poster.pdf" target="_blank" rel="noopener">Open the poster in a new tab</a>.
+                </p>
+              </object>
+            </div>
+          </div>
+        </div>
+      </article>
+
+      <!-- ——————— RESEARCH ROLE · URAP ——————— -->
       <div class="exp-list">
         <div class="card exp-card research-card">
           <div class="exp-head">

@@ -75,3 +75,28 @@
   window.addEventListener("scroll", onScroll, { passive: true });
   onScroll();
 })();
+
+// ----- Research document tabs (Paper / Poster) -----
+(function () {
+  const docs = document.querySelector("#research-docs");
+  if (!docs) return;
+
+  const tabs = docs.querySelectorAll(".doc-tab");
+  const panels = docs.querySelectorAll(".doc-panel");
+
+  tabs.forEach((tab) =>
+    tab.addEventListener("click", () => {
+      const id = tab.dataset.doc;
+      tabs.forEach((t) => {
+        const active = t === tab;
+        t.classList.toggle("is-active", active);
+        t.setAttribute("aria-selected", String(active));
+      });
+      panels.forEach((panel) => {
+        const show = panel.id === "doc-" + id;
+        panel.classList.toggle("is-hidden", !show);
+        panel.toggleAttribute("hidden", !show);
+      });
+    })
+  );
+})();
