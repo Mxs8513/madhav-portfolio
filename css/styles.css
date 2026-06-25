@@ -800,6 +800,25 @@ a { color: var(--accent); }
   box-shadow: 0 3px 6px rgba(17, 17, 26, 0.05), 0 28px 68px rgba(124, 58, 237, 0.13);
 }
 
+/* Inline 4K demo video — occupies the exact same box as the screenshot variant
+   so the surrounding layout never shifts. Autoplays muted/looped on the page. */
+.project-visual--video video {
+  display: block;
+  width: 100%;
+  height: auto;
+  aspect-ratio: 16 / 9;
+  object-fit: cover;
+  background: #08080b;
+  border: 1px solid var(--border-strong);
+  border-radius: 14px;
+  box-shadow: 0 2px 5px rgba(17, 17, 26, 0.05), 0 24px 60px rgba(17, 17, 26, 0.12);
+  transition: transform 0.3s ease, box-shadow 0.3s ease;
+}
+.project:hover .project-visual--video video {
+  transform: translateY(-2px);
+  box-shadow: 0 3px 6px rgba(17, 17, 26, 0.05), 0 28px 68px rgba(124, 58, 237, 0.13);
+}
+
 .shot-bar {
   display: flex;
   align-items: center;
