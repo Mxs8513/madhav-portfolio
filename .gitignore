@@ -5,3 +5,4 @@ node_modules/
 # local video masters (site uses repopulse-demo-web.mp4)
 assets/repopulse-demo-4k.mp4
 assets/repopulse-demo-4k.orig.mp4
+assets/*-demo-4k*.mp4
