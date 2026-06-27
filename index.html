@@ -88,7 +88,18 @@
               <li><a href="#repopulse-workflow">The Safe Change Workflow</a></li>
             </ul>
           </li>
-          <li><a href="#riskos">RiskOS AI</a></li>
+          <li class="sidebar-group sidebar-group--nested" data-nav-group="riskos">
+            <div class="sidebar-link-row">
+              <a href="#riskos">RiskOS AI</a>
+              <button class="sidebar-disclosure" type="button" aria-label="Toggle RiskOS documentation links" aria-expanded="false" aria-controls="sidebar-riskos">
+                <svg viewBox="0 0 24 24" aria-hidden="true"><path d="m6 9 6 6 6-6" /></svg>
+              </button>
+            </div>
+            <ul class="sidebar-subnav sidebar-subnav--nested" id="sidebar-riskos" hidden>
+              <li><a href="#riskos-architecture">End-to-End System Architecture</a></li>
+              <li><a href="#riskos-pipeline">The Transaction-to-Decision Pipeline</a></li>
+            </ul>
+          </li>
           <li><a href="#diya">D.I.Y.A</a></li>
         </ul>
       </li>
@@ -776,9 +787,110 @@
             <ul class="pill-list">
               <li>Python</li><li>FastAPI</li><li>React</li><li>SQLAlchemy</li><li>SQLite</li><li>Machine Learning</li><li>Pytest</li><li>GitHub Actions</li><li>Twilio</li><li>REST APIs</li>
             </ul>
-            <p class="links-note">Live at <strong>risk-osai.vercel.app</strong>. Demo video coming soon.</p>
+            <p class="links-note">Live at <strong>risk-osai.vercel.app</strong>. Demo video above; full architecture below.</p>
           </div>
         </div>
+
+        <section class="project-docs" aria-labelledby="riskos-docs-title">
+          <header class="docs-intro">
+            <span class="docs-kicker">System Documentation</span>
+            <h4 id="riskos-docs-title">How RiskOS Scores a Transaction, Decides a Response, and Keeps a Human in Charge</h4>
+            <p>
+              These diagrams connect the console you see in the demo to what runs underneath: a PaySim-style
+              transaction stream, a hybrid rules-plus-ML risk engine inside a FastAPI backend, an automated
+              response orchestrator, and a role-based, fully audited human review loop — where the AI explains
+              but never decides.
+            </p>
+          </header>
+
+          <div class="docs-block" id="riskos-architecture">
+            <div class="docs-heading">
+              <span>Diagram 01</span>
+              <h5>End-to-End System Architecture</h5>
+              <p>Read top to bottom: transactions are ingested and enriched, scored and decided by the FastAPI risk backend, then persisted and served to a role-scoped Next.js console.</p>
+            </div>
+            <figure class="docs-figure">
+              <a href="assets/riskos-system-architecture.svg" target="_blank" rel="noopener" aria-label="Open the full-size RiskOS system architecture diagram">
+                <img
+                  src="assets/riskos-system-architecture.png"
+                  loading="lazy"
+                  decoding="async"
+                  alt="RiskOS architecture: a PaySim-style transaction stream feeds a FastAPI backend with JWT auth and RBAC, a deterministic rule engine plus a scikit-learn ML model, a response orchestrator, and Anthropic Claude evidence with a mock fallback; data persists via SQLAlchemy to SQLite or Postgres and is served to a Next.js console on Vercel"
+                />
+              </a>
+              <figcaption>From an enriched transaction stream through a hybrid rules-plus-ML engine to an audited, role-scoped console — FastAPI on Render, Next.js on Vercel.</figcaption>
+            </figure>
+
+            <div class="docs-walkthrough" aria-label="RiskOS architecture walkthrough">
+              <article class="doc-step doc-step--blue">
+                <span class="doc-step-number">1</span>
+                <div><h6>Ingestion &amp; enrichment</h6><p>PaySim-style transactions — generated synthetically or ingested from a real PaySim CSV — are enriched with behavioral and contextual signals: amount versus the customer's average, device, geo distance, velocity, merchant risk, card-not-present, and the dataset's own fraud signal.</p></div>
+              </article>
+              <article class="doc-step doc-step--purple">
+                <span class="doc-step-number">2</span>
+                <div><h6>Hybrid risk scoring</h6><p>A FastAPI backend scores every transaction with seven deterministic, explainable rules (<code>R-001…R-007</code>), then blends in a scikit-learn model for learned patterns. The rules set the score — the LLM never does — and the system degrades gracefully to rules-only if the model artifact is missing.</p></div>
+              </article>
+              <article class="doc-step doc-step--purple">
+                <span class="doc-step-number">3</span>
+                <div><h6>Automated response</h6><p>A response orchestrator maps the score to a band and an action — approve, monitor, customer verification, hold, or escalate — so low-risk traffic clears automatically and only genuine risk ever reaches a person.</p></div>
+              </article>
+              <article class="doc-step doc-step--red">
+                <span class="doc-step-number">4</span>
+                <div><h6>Auth, RBAC &amp; AI evidence</h6><p>JWT auth and role-based permissions gate every endpoint. Anthropic Claude writes grounded evidence packets that explain the triggered signals — with a deterministic mock fallback so the demo never breaks, and SMS step-up (Twilio) kept off in deployment.</p></div>
+              </article>
+              <article class="doc-step doc-step--green">
+                <span class="doc-step-number">5</span>
+                <div><h6>Persistence &amp; console</h6><p>SQLAlchemy persists transactions, investigations, scores, rules, reviewer decisions, and the audit log to SQLite/Postgres. A Next.js console on Vercel renders role-scoped dashboards, live metrics, and the investigation queue — with a cold-start demo fallback.</p></div>
+              </article>
+            </div>
+          </div>
+
+          <div class="docs-block docs-block--recovery" id="riskos-pipeline">
+            <div class="docs-heading">
+              <span>Diagram 02</span>
+              <h5>The Transaction-to-Decision Pipeline — Human in the Loop</h5>
+              <p>RiskOS's defining feature: every transaction is scored by explainable rules plus ML, auto-handled when it's safe, and routed to an audited human review when it isn't.</p>
+            </div>
+            <figure class="docs-figure">
+              <a href="assets/riskos-decision-pipeline.svg" target="_blank" rel="noopener" aria-label="Open the full-size RiskOS transaction-to-decision pipeline diagram">
+                <img
+                  src="assets/riskos-decision-pipeline.png"
+                  loading="lazy"
+                  decoding="async"
+                  alt="RiskOS decision pipeline: a transaction is enriched and scored by deterministic rules, blended with a scikit-learn model into a hybrid score, banded by a response orchestrator that auto-clears low risk and escalates higher risk, opens an investigation with a grounded Claude evidence packet, and routes to a role-based human review whose decision and every step are logged to the audit trail"
+                />
+              </a>
+              <figcaption>The lifecycle of one transaction — auto-clear and confirm paths in green, dismissals in red, gates and step-up in amber. Run states (scored → hybrid → banded → investigation → decided) are the engine's real values.</figcaption>
+            </figure>
+
+            <div class="docs-walkthrough docs-walkthrough--recovery" aria-label="RiskOS decision pipeline walkthrough">
+              <article class="doc-step doc-step--blue">
+                <span class="doc-step-number">1</span>
+                <div><h6>Score on arrival</h6><p>Every transaction is enriched and scored the moment it lands. Seven deterministic rules produce an explainable 0–100 score <em>with reasons</em> — the score is never produced by the LLM.</p></div>
+              </article>
+              <article class="doc-step doc-step--purple">
+                <span class="doc-step-number">2</span>
+                <div><h6>Hybrid score &amp; band</h6><p>A scikit-learn model blends learned patterns into a hybrid score, which is mapped to a risk band (Low → Critical). The model assists but is never the authority, and Critical always involves a human.</p></div>
+              </article>
+              <article class="doc-step doc-step--purple">
+                <span class="doc-step-number">3</span>
+                <div><h6>Decide the response</h6><p>The orchestrator auto-clears Low/Medium, triggers customer verification for Elevated (60–74), holds High (75–84), and escalates Critical (85+) to human review — automating the easy calls and reserving people for the hard ones.</p></div>
+              </article>
+              <article class="doc-step doc-step--red">
+                <span class="doc-step-number">4</span>
+                <div><h6>Investigate with grounded evidence</h6><p>Flagged transactions open an investigation; Claude writes an evidence packet explaining the triggered signals and policy checks. It's context for the reviewer — never a verdict — and falls back to a deterministic mock if the API is unavailable.</p></div>
+              </article>
+              <article class="doc-step doc-step--green">
+                <span class="doc-step-number">5</span>
+                <div><h6>Human decides, everything logged</h6><p>An analyst or manager confirms, dismisses, escalates, or — with permission — overrides. Every action is written to the audit log and rolls into reviewer-agreement, false-positive, and automation metrics.</p></div>
+              </article>
+            </div>
+
+            <aside class="docs-scope docs-scope--recovery">
+              <strong>Trust boundary:</strong> rules score, ML assists, AI explains, humans decide. Deterministic rules produce the risk score, the scikit-learn model only blends in learned patterns (and degrades to rules-only when absent), and the LLM only explains structured signals — it never sets the score or the verdict. Every Critical case requires a logged, attributable human review.
+            </aside>
+          </div>
+        </section>
       </article>
 
       <!-- ——————— PROJECT 4 · D.I.Y.A ——————— -->
