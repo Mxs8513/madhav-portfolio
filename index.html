@@ -18,7 +18,7 @@
   <meta property="og:site_name" content="Madhav Suri" />
   <meta property="og:url" content="https://madhavsuri.com/" />
   <meta property="og:title" content="Madhav Suri — Full-Stack &amp; AI Engineer" />
-  <meta property="og:description" content="Building AI platforms, developer tools, and software systems. Projects: RepoPulse Agent, RiskOS AI, D.I.Y.A." />
+  <meta property="og:description" content="Building distributed systems, AI platforms, and developer tools. Projects: StreamForge, RepoPulse Agent, RiskOS AI, D.I.Y.A." />
   <meta property="og:image" content="https://madhavsuri.com/assets/og-image.png" />
   <meta property="og:image:width" content="1200" />
   <meta property="og:image:height" content="630" />
@@ -136,11 +136,11 @@
         <div class="about-text">
           <p>
             I'm a Computer Science and Mathematics student at UT Dallas
-            interested in backend engineering, AI systems, developer tools,
+            interested in backend engineering, distributed systems, AI systems, developer tools,
             and machine learning. I like projects where the API layer, data
             model, AI logic, and frontend experience connect into one usable
             product. Recently, I've been building systems like
-            <a href="#repopulse">RepoPulse Agent</a>, <a href="#riskos">RiskOS
+            <a href="#streamforge">StreamForge</a>, <a href="#repopulse">RepoPulse Agent</a>, <a href="#riskos">RiskOS
             AI</a>, and <a href="#diya">D.I.Y.A</a> to strengthen my
             full-stack engineering, product thinking, and applied AI skills.
           </p>
@@ -213,13 +213,110 @@
     <section class="section" id="projects">
       <h2 class="section-title">Projects</h2>
       <p class="section-sub">
-        Each one built end to end — API layer, data model, ML or AI logic, and interface — as a mini product case study.
+        Each one built end to end — from distributed infrastructure and data models to AI logic and product interfaces.
       </p>
 
-      <!-- ——————— PROJECT 1 · REPOPULSE ——————— -->
-      <article class="project card" id="repopulse">
+      <!-- ——————— PROJECT 1 · STREAMFORGE ——————— -->
+      <article class="project card" id="streamforge">
         <header class="project-head">
           <span class="project-number">Project 01</span>
+          <h3 class="project-name">StreamForge</h3>
+          <p class="project-category">Distributed Stream Processing Engine</p>
+          <p class="project-summary">
+            A from-scratch distributed stream processing engine in Go with coordinator-managed workers,
+            <strong>event-time windows</strong>, durable checkpoint recovery, and effectively-once output under crash.
+          </p>
+          <div class="project-cta">
+            <a class="btn btn-secondary" href="https://github.com/Mxs8513/StreamForge" target="_blank" rel="noopener">GitHub</a>
+          </div>
+        </header>
+
+        <!-- TODO: Replace assets/streamforge-dashboard.png with a 1440x900 Grafana capture taken during worker recovery. -->
+        <div class="project-visual project-visual--img" aria-label="StreamForge Grafana dashboard during a worker-recovery event">
+          <img
+            src="assets/streamforge-dashboard.png"
+            width="1440"
+            height="900"
+            alt="StreamForge Grafana dashboard during a worker-recovery event"
+          />
+        </div>
+
+        <div class="metric-strip" aria-label="StreamForge key metrics">
+          <div class="metric"><b>~40k/s</b><span>Sustained throughput</span></div>
+          <div class="metric"><b>&le;25 ms</b><span>p99 latency</span></div>
+          <div class="metric"><b>~2.8 s</b><span>Crash recovery</span></div>
+          <div class="metric"><b>3</b><span>Distributed workers</span></div>
+        </div>
+
+        <div class="project-body">
+          <div class="project-desc">
+            <h4 class="story-title">The Story</h4>
+            <p>
+              I wanted to understand what makes systems like Flink and Spark Structured Streaming dependable,
+              so I built the core engine mechanics myself instead of wrapping an existing processor. StreamForge
+              consumes Kafka events, partitions keyed state across workers, and coordinates the cluster over
+              <strong>gRPC and Protobuf</strong>.
+            </p>
+            <p>
+              The hard part was not moving messages; it was making recovery correct. Workers checkpoint
+              BadgerDB state and Kafka offsets at aligned barriers, stage Parquet output by checkpoint, and restore
+              ownership after heartbeat-based failure detection. An automated chaos test kills a worker while the
+              stream is active and reconciles committed output against deterministic ground truth.
+            </p>
+            <p>
+              The result is a defensible miniature stream processor with real distribution, event-time watermarks,
+              fault-tolerant state, Prometheus/Grafana observability, and an Apache Iceberg sink that creates one
+              time-travelable table snapshot per completed checkpoint.
+            </p>
+            <h4>Problem</h4>
+            <p>
+              Stateful stream processing must keep offsets, distributed state, and output in agreement when workers
+              fail. If those advance independently, recovery either loses events or counts them twice. StreamForge
+              treats all three as one checkpointed unit and makes the remaining crash-boundary behavior explicit.
+            </p>
+            <h4>Technical Depth</h4>
+            <ul class="feature-list">
+              <li><strong>Distributed engine</strong>: coordinator-managed workers with keyed gRPC/Protobuf shuffle, so every key aggregates on exactly one owner</li>
+              <li><strong>Fault tolerance</strong>: heartbeat detection, epoch-based reassignment, filtered state restore, and Kafka resume from checkpoint-owned offsets</li>
+              <li><strong>Correctness</strong>: aligned two-phase checkpoints and staged output commits verified by an automated crash reconciliation test</li>
+              <li><strong>Event-time processing</strong>: tumbling windows close from watermarks rather than wall-clock time, keeping replay assignments stable</li>
+              <li><strong>Measured limits</strong>: ~40k events/s at p99 &le; 25 ms; the benchmark exposes the CPU/shuffle saturation knee instead of hiding it</li>
+            </ul>
+            <h4>Key Features</h4>
+            <ul class="feature-list">
+              <li>Kafka source with engine-owned offsets and keyed state in BadgerDB</li>
+              <li>Parquet output staged in S3-compatible MinIO and committed with checkpoints</li>
+              <li>Worker crash injection plus no-loss and duplicate-window reconciliation</li>
+              <li>Prometheus metrics for throughput, latency, checkpoints, lag, recovery, and shuffle traffic</li>
+              <li>Provisioned Grafana dashboard for live workload and recovery monitoring</li>
+              <li>Apache Iceberg sink with one snapshot per checkpoint and time-travel queries</li>
+            </ul>
+            <h4>Why It Matters</h4>
+            <p>
+              StreamForge demonstrates the systems work hidden behind a streaming API: coordination, partition
+              ownership, replay-stable time semantics, durable state, and transactional output. The benchmark and
+              failure tests make its guarantees inspectable rather than leaving them as architecture-diagram claims.
+            </p>
+            <p>
+              <strong>Honest scope:</strong> output is bit-exact exactly-once without failures. Under a mid-stream crash,
+              it is effectively-once: zero lost keys and zero duplicate windows, with a small aggregate residual on
+              windows that straddle recovery. Closing that residual requires Chandy-Lamport barrier snapshotting.
+            </p>
+          </div>
+          <div class="project-side">
+            <h4>Tech Stack</h4>
+            <ul class="pill-list">
+              <li>Go</li><li>Kafka</li><li>gRPC</li><li>Protobuf</li><li>BadgerDB</li><li>Parquet</li><li>S3 / MinIO</li><li>Apache Iceberg</li><li>Prometheus</li><li>Grafana</li><li>Docker</li>
+            </ul>
+            <p class="links-note">Built and benchmarked in 2026. Source and reproducible test harness on GitHub.</p>
+          </div>
+        </div>
+      </article>
+
+      <!-- ——————— PROJECT 2 · REPOPULSE ——————— -->
+      <article class="project card" id="repopulse">
+        <header class="project-head">
+          <span class="project-number">Project 02</span>
           <h3 class="project-name">RepoPulse Agent</h3>
           <p class="project-category">AI Codebase Intelligence &amp; Safe Change Planning</p>
           <p class="project-summary">
@@ -324,10 +421,10 @@
         </div>
       </article>
 
-      <!-- ——————— PROJECT 2 · RISKOS AI ——————— -->
+      <!-- ——————— PROJECT 3 · RISKOS AI ——————— -->
       <article class="project card" id="riskos">
         <header class="project-head">
-          <span class="project-number">Project 02</span>
+          <span class="project-number">Project 03</span>
           <h3 class="project-name">RiskOS AI</h3>
           <p class="project-category">AI-Assisted Fraud Operations Console for Fintech Risk Teams</p>
           <p class="project-summary">
@@ -441,10 +538,10 @@
         </div>
       </article>
 
-      <!-- ——————— PROJECT 3 · D.I.Y.A ——————— -->
+      <!-- ——————— PROJECT 4 · D.I.Y.A ——————— -->
       <article class="project card" id="diya">
         <header class="project-head">
-          <span class="project-number">Project 03</span>
+          <span class="project-number">Project 04</span>
           <h3 class="project-name">D.I.Y.A</h3>
           <p class="project-category">AI Academic Workflow Platform with Human-in-the-Loop Review</p>
           <p class="project-summary">
