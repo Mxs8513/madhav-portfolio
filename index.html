@@ -315,6 +315,110 @@
             <p class="links-note">Built and benchmarked in 2026. Source and reproducible test harness on GitHub.</p>
           </div>
         </div>
+
+        <section class="streamforge-docs" aria-labelledby="streamforge-docs-title">
+          <header class="docs-intro">
+            <span class="docs-kicker">System Documentation</span>
+            <h4 id="streamforge-docs-title">How StreamForge Moves, Commits, and Recovers Data</h4>
+            <p>
+              These diagrams connect the repository structure to the runtime path shown in the demo:
+              a replayable Kafka source, coordinator-managed workers, checkpoint-coupled state and output,
+              and recovery from durable offsets after a process failure.
+            </p>
+          </header>
+
+          <div class="docs-block">
+            <div class="docs-heading">
+              <span>Diagram 01</span>
+              <h5>End-to-End System Architecture</h5>
+              <p>Read from top to bottom: ingestion feeds the distributed engine, and only completed checkpoints expose lakehouse output.</p>
+            </div>
+            <figure class="docs-figure">
+              <a href="assets/streamforge-system-architecture.png" target="_blank" rel="noopener" aria-label="Open the full-size StreamForge system architecture diagram">
+                <img
+                  src="assets/streamforge-system-architecture.png"
+                  loading="lazy"
+                  decoding="async"
+                  alt="StreamForge architecture showing Kafka ingestion, a Go coordinator, three stateful workers, BadgerDB window state, staged commits, MinIO storage, Apache Iceberg, Prometheus, Grafana, and Docker"
+                />
+              </a>
+              <figcaption>The implemented core runs from Kafka/Redpanda through the Go worker cluster to checkpoint-referenced Parquet and Iceberg storage.</figcaption>
+            </figure>
+
+            <div class="docs-walkthrough" aria-label="StreamForge architecture walkthrough">
+              <article class="doc-step doc-step--blue">
+                <span class="doc-step-number">1</span>
+                <div><h6>Data ingestion and replay</h6><p>Kafka/Redpanda is the durable front door. The generator writes keyed records across six partitions; retaining those records lets a reassigned worker resume from checkpoint-owned offsets instead of trusting volatile in-memory progress.</p></div>
+              </article>
+              <article class="doc-step doc-step--purple">
+                <span class="doc-step-number">2</span>
+                <div><h6>Coordinator control plane</h6><p>The Go coordinator manages membership, assigns six Kafka partitions and 64 key buckets, receives heartbeats, advances cluster epochs, and drives aligned checkpoint barriers. It controls ownership but does not process event payloads itself.</p></div>
+              </article>
+              <article class="doc-step doc-step--purple">
+                <span class="doc-step-number">3</span>
+                <div><h6>Worker data plane</h6><p>Each worker consumes its assigned partitions and hashes every key into one authoritative bucket. Local keys enter that worker's aggregation loop; remote keys cross the gRPC shuffle to their owner, which updates event-time tumbling windows in BadgerDB.</p></div>
+              </article>
+              <article class="doc-step doc-step--green">
+                <span class="doc-step-number">4</span>
+                <div><h6>Aligned checkpoint and staged commit</h6><p>Prepare pauses sources and drains in-flight work. Commit snapshots BadgerDB state with Kafka offsets and stages pending Parquet. Only after every worker ACKs does one checkpoint metadata write make those staged files part of committed output.</p></div>
+              </article>
+              <article class="doc-step doc-step--green">
+                <span class="doc-step-number">5</span>
+                <div><h6>Lakehouse and time travel</h6><p>MinIO provides the S3-compatible object store for snapshots and staged Parquet. The verifier reads files referenced by completed checkpoints, while the Iceberg sink creates one table snapshot per checkpoint for atomic reads and time-travel queries.</p></div>
+              </article>
+              <article class="doc-step doc-step--blue">
+                <span class="doc-step-number">6</span>
+                <div><h6>Operations and observability</h6><p>Prometheus collects throughput, latency, lag, checkpoint, recovery, and shuffle metrics; Grafana turns them into the operational view. Docker Compose supplies the repeatable local cluster used by the benchmark and chaos tests.</p></div>
+              </article>
+            </div>
+
+            <aside class="docs-scope">
+              <strong>Diagram boundary:</strong> applications, IoT devices, microservices, databases, NGINX, desktop, and mobile represent possible integration edges. They are not bundled clients in the current repository; the implemented StreamForge data path begins at Kafka/Redpanda.
+            </aside>
+          </div>
+
+          <div class="docs-block docs-block--recovery">
+            <div class="docs-heading">
+              <span>Diagram 02</span>
+              <h5>Fault Recovery Storyboard</h5>
+              <p>The recovery path protects progress by treating worker state, source offsets, and visible output as one checkpointed unit.</p>
+            </div>
+            <figure class="docs-figure">
+              <a href="assets/streamforge-fault-recovery-storyboard.png" target="_blank" rel="noopener" aria-label="Open the full-size StreamForge fault recovery storyboard">
+                <img
+                  src="assets/streamforge-fault-recovery-storyboard.png"
+                  loading="lazy"
+                  decoding="async"
+                  alt="Three-step StreamForge recovery storyboard showing normal operation, a worker heartbeat timeout, and state restoration with partition reassignment from the last completed checkpoint"
+                />
+              </a>
+              <figcaption>The storyboard shows the recovery phases conceptually; the measured chaos test restores ownership onto the two surviving workers rather than restarting the killed process.</figcaption>
+            </figure>
+
+            <div class="docs-walkthrough docs-walkthrough--recovery" aria-label="StreamForge fault recovery walkthrough">
+              <article class="doc-step doc-step--blue">
+                <span class="doc-step-number">1</span>
+                <div><h6>Normal operation</h6><p>Three workers process disjoint partitions and buckets in epoch 1. Checkpoint 3 records all worker snapshots, partition offsets, and staged Parquet paths, giving the cluster one durable point from which every component can agree to resume.</p></div>
+              </article>
+              <article class="doc-step doc-step--red">
+                <span class="doc-step-number">2</span>
+                <div><h6>Crash detection</h6><p>The Phase 6 test sends SIGKILL to worker w0 while the generator is active. An in-progress prepare aborts instead of publishing partial metadata; after 2.168 seconds without a heartbeat, the coordinator declares w0 dead and advances to epoch 2.</p></div>
+              </article>
+              <article class="doc-step doc-step--purple">
+                <span class="doc-step-number">3</span>
+                <div><h6>Restore and rebalance</h6><p>Workers w1 and w2 take ownership of partitions [1, 3, 5] and [0, 2, 4], with 32 key buckets each. They scan all three checkpoint snapshots, restore only their newly owned buckets, and resume Kafka from checkpoint 3 offsets.</p></div>
+              </article>
+              <article class="doc-step doc-step--green">
+                <span class="doc-step-number">4</span>
+                <div><h6>Resume and verify</h6><p>The first post-rebalance checkpoint completes with both survivors and all six partitions. The recorded run reconciles 200 keys, zero keys below baseline, and zero duplicate committed windows; its 20,017 aggregate count makes the 17-event replay boundary explicit.</p></div>
+              </article>
+            </div>
+
+            <aside class="docs-scope docs-scope--recovery">
+              <strong>Correctness boundary:</strong> the no-failure path is bit-exact exactly-once. Under the measured mid-stream crash, checkpoint visibility remains atomic and no committed window appears twice, but replay across the recovery boundary makes aggregate semantics effectively-once until a Chandy-Lamport-style in-flight snapshot closes that residual.
+            </aside>
+          </div>
+        </section>
       </article>
 
       <!-- ——————— PROJECT 2 · REPOPULSE ——————— -->
