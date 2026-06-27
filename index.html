@@ -85,6 +85,7 @@
             </div>
             <ul class="sidebar-subnav sidebar-subnav--nested" id="sidebar-repopulse" hidden>
               <li><a href="#repopulse-architecture">End-to-End System Architecture</a></li>
+              <li><a href="#repopulse-workflow">The Safe Change Workflow</a></li>
             </ul>
           </li>
           <li><a href="#riskos">RiskOS AI</a></li>
@@ -613,6 +614,52 @@
                 <div><h6>Outputs &amp; audit trail</h6><p>Grounded answers, change plans, proposed diffs, verification results, and a shareable final engineering report are produced for the UI. Every agent run is written to a replayable run store, so each result stays inspectable and reproducible.</p></div>
               </article>
             </div>
+          </div>
+
+          <div class="docs-block docs-block--recovery" id="repopulse-workflow">
+            <div class="docs-heading">
+              <span>Diagram 02</span>
+              <h5>The Safe Change Workflow — Human in the Loop</h5>
+              <p>RepoPulse's defining feature: a change request is safety-classified, planned, turned into a verified diff, and gated behind explicit human approval — and the whole run is logged.</p>
+            </div>
+            <figure class="docs-figure">
+              <a href="assets/repopulse-safe-change-workflow.svg" target="_blank" rel="noopener" aria-label="Open the full-size RepoPulse safe change workflow diagram">
+                <img
+                  src="assets/repopulse-safe-change-workflow.png"
+                  loading="lazy"
+                  decoding="async"
+                  alt="RepoPulse safe change workflow: a change request passes a safety gate that refuses unsafe intent, then task classification, grounded retrieval, a change plan (planned), a proposed diff (diff_generated), diff verification (pass/warn/fail), a required human approval gate (approve or reject), an optional sandbox trial-run, and an approved, logged, reported result — with every step appended to a replayable run store"
+                />
+              </a>
+              <figcaption>The lifecycle of one change request — refusal and rejection branches in red, gate decisions in amber, the approved path in green. Run states (planned → diff_generated → verified → approved) are the engine's real status values.</figcaption>
+            </figure>
+
+            <div class="docs-walkthrough docs-walkthrough--recovery" aria-label="RepoPulse safe change workflow walkthrough">
+              <article class="doc-step doc-step--blue">
+                <span class="doc-step-number">1</span>
+                <div><h6>Safety gate runs first</h6><p>Every request is classified <em>before</em> any retrieval or model call. Attempts to delete the repo, exfiltrate secrets, bypass review, or weaken quality gates are refused up front with a reason and a safer suggestion — they never reach planning or an AI call.</p></div>
+              </article>
+              <article class="doc-step doc-step--purple">
+                <span class="doc-step-number">2</span>
+                <div><h6>Classify, then ground</h6><p>A safe task is typed — bug fix, refactor, UI/API/backend, or config — with constraints and an initial risk level. Grounded retrieval (lexical → structural → AI rerank) then selects the actual files the change will touch, so the plan is rooted in real code.</p></div>
+              </article>
+              <article class="doc-step doc-step--purple">
+                <span class="doc-step-number">3</span>
+                <div><h6>Plan → diff, nothing applied</h6><p>The agent emits a change plan (status <code>planned</code>), then a reviewable unified diff per file (status <code>diff_generated</code>). At no point is anything written to the repository — the diff is a proposal, not an action.</p></div>
+              </article>
+              <article class="doc-step doc-step--red">
+                <span class="doc-step-number">4</span>
+                <div><h6>Verify, then the human gate</h6><p>Automated diff verification runs as a quality gate — <code>fail</code> blocks approval, <code>warn</code> flags for review, <code>pass</code> proceeds. A person then approves or rejects per file. The agent cannot apply a change itself, and the request text cannot talk its way past the gate.</p></div>
+              </article>
+              <article class="doc-step doc-step--green">
+                <span class="doc-step-number">5</span>
+                <div><h6>Trial-run, log, report</h6><p>Approved patches can be trial-run in a sandbox (<code>passed</code> / <code>failed</code> / <code>skipped</code>). Every step is appended to a replayable run store and rolled into a shareable final engineering report, so each result stays inspectable and reproducible.</p></div>
+              </article>
+            </div>
+
+            <aside class="docs-scope docs-scope--recovery">
+              <strong>Trust boundary:</strong> human approval is mandatory and enforced in the workflow itself — the safety gate runs before any AI call, the approval gate sits after verification, and neither can be bypassed by the prompt. The agent proposes; a person disposes. That is the whole point of RepoPulse.
+            </aside>
           </div>
         </section>
       </article>
