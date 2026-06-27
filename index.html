@@ -76,7 +76,17 @@
               <li><a href="#streamforge-recovery">Fault Recovery Storyboard</a></li>
             </ul>
           </li>
-          <li><a href="#repopulse">RepoPulse Agent</a></li>
+          <li class="sidebar-group sidebar-group--nested" data-nav-group="repopulse">
+            <div class="sidebar-link-row">
+              <a href="#repopulse">RepoPulse Agent</a>
+              <button class="sidebar-disclosure" type="button" aria-label="Toggle RepoPulse documentation links" aria-expanded="false" aria-controls="sidebar-repopulse">
+                <svg viewBox="0 0 24 24" aria-hidden="true"><path d="m6 9 6 6 6-6" /></svg>
+              </button>
+            </div>
+            <ul class="sidebar-subnav sidebar-subnav--nested" id="sidebar-repopulse" hidden>
+              <li><a href="#repopulse-architecture">End-to-End System Architecture</a></li>
+            </ul>
+          </li>
           <li><a href="#riskos">RiskOS AI</a></li>
           <li><a href="#diya">D.I.Y.A</a></li>
         </ul>
@@ -548,9 +558,63 @@
             <ul class="pill-list">
               <li>Next.js</li><li>TypeScript</li><li>React</li><li>GitHub API</li><li>OpenAI</li><li>Tailwind CSS</li><li>Vitest</li>
             </ul>
-            <p class="links-note">Live at <strong>repopulse.live</strong>. Demo video coming soon.</p>
+            <p class="links-note">Live at <strong>repopulse.live</strong>. Demo video above; full architecture below.</p>
           </div>
         </div>
+
+        <section class="project-docs" aria-labelledby="repopulse-docs-title">
+          <header class="docs-intro">
+            <span class="docs-kicker">System Documentation</span>
+            <h4 id="repopulse-docs-title">How RepoPulse Reads a Repo, Plans a Change, and Keeps a Human in the Loop</h4>
+            <p>
+              This diagram connects the product you see in the demo to what runs underneath: a GitHub
+              source, a deterministic indexer, a grounded multi-stage retrieval and planning engine over a
+              cost-guarded AI provider chain, and an approval gate that ensures nothing is applied silently.
+            </p>
+          </header>
+
+          <div class="docs-block" id="repopulse-architecture">
+            <div class="docs-heading">
+              <span>Diagram 01</span>
+              <h5>End-to-End System Architecture</h5>
+              <p>Read top to bottom: a repository is fetched and indexed, the engine retrieves and plans against real code, and only human-approved results reach the outputs.</p>
+            </div>
+            <figure class="docs-figure">
+              <a href="assets/repopulse-system-architecture.svg" target="_blank" rel="noopener" aria-label="Open the full-size RepoPulse system architecture diagram">
+                <img
+                  src="assets/repopulse-system-architecture.png"
+                  loading="lazy"
+                  decoding="async"
+                  alt="RepoPulse architecture: GitHub repository source via Octokit, a Next.js orchestration layer, an indexer/classifier, a multi-stage retrieval pipeline, a planner and diff generator over an OpenAI to Groq to Anthropic to mock provider chain with a cost guard and prompt cache, a safety and human-approval gate, and grounded outputs with a replayable run store"
+                />
+              </a>
+              <figcaption>From a GitHub repo through grounded retrieval and planning to approval-gated, cited outputs — deployed on Next.js / Vercel.</figcaption>
+            </figure>
+
+            <div class="docs-walkthrough" aria-label="RepoPulse architecture walkthrough">
+              <article class="doc-step doc-step--blue">
+                <span class="doc-step-number">1</span>
+                <div><h6>Source &amp; indexing</h6><p>Any public or private GitHub repo is connected as <code>owner/name</code>. The Octokit REST client pulls metadata, commit history, the recursive git tree, and file contents; RepoPulse then builds a deterministic file map and detects the stack — no AI needed to know what the repo contains.</p></div>
+              </article>
+              <article class="doc-step doc-step--purple">
+                <span class="doc-step-number">2</span>
+                <div><h6>Grounded retrieval</h6><p>A multi-stage pipeline — lexical keyword scan, structural ranking, then optional AI rerank of the top candidates — selects the most relevant files. Every answer and plan is grounded in real code and cites the exact source files it used.</p></div>
+              </article>
+              <article class="doc-step doc-step--purple">
+                <span class="doc-step-number">3</span>
+                <div><h6>Planning, diffs &amp; the AI chain</h6><p>The engine classifies task intent, proposes a change plan with risks and a unified diff, and verifies it. All model calls run behind a provider fallback chain — OpenAI <code>gpt-4o-mini</code> → Groq → Anthropic → deterministic mock — guarded by a daily cost budget and a prompt cache.</p></div>
+              </article>
+              <article class="doc-step doc-step--red">
+                <span class="doc-step-number">4</span>
+                <div><h6>Safety &amp; human approval</h6><p>A safety gate validates file paths and blocks destructive or approval-bypassing requests. The agent never applies a change on its own — a proposed diff always waits for explicit human approval before anything is considered done.</p></div>
+              </article>
+              <article class="doc-step doc-step--green">
+                <span class="doc-step-number">5</span>
+                <div><h6>Outputs &amp; audit trail</h6><p>Grounded answers, change plans, proposed diffs, verification results, and a shareable final engineering report are produced for the UI. Every agent run is written to a replayable run store, so each result stays inspectable and reproducible.</p></div>
+              </article>
+            </div>
+          </div>
+        </section>
       </article>
 
       <!-- ——————— PROJECT 3 · RISKOS AI ——————— -->

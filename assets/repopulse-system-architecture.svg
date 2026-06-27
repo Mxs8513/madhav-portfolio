@@ -1,0 +1,209 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1480 1180" width="1480" height="1180" font-family="Inter, -apple-system, 'Segoe UI', Roboto, Helvetica, Arial, sans-serif">
+<defs>
+  <marker id="arrow" viewBox="0 0 10 10" refX="8" refY="5" markerWidth="7" markerHeight="7" orient="auto-start-reverse"><path d="M0 0 L10 5 L0 10 z" fill="#1d4ed8"/></marker>
+  <marker id="arrowP" viewBox="0 0 10 10" refX="8" refY="5" markerWidth="7" markerHeight="7" orient="auto-start-reverse"><path d="M0 0 L10 5 L0 10 z" fill="#7c3aed"/></marker>
+  <marker id="arrowG" viewBox="0 0 10 10" refX="8" refY="5" markerWidth="7" markerHeight="7" orient="auto-start-reverse"><path d="M0 0 L10 5 L0 10 z" fill="#15803d"/></marker>
+  <marker id="arrowA" viewBox="0 0 10 10" refX="8" refY="5" markerWidth="7" markerHeight="7" orient="auto-start-reverse"><path d="M0 0 L10 5 L0 10 z" fill="#b45309"/></marker>
+</defs>
+<rect x="0" y="0" width="1480" height="1180" rx="0" fill="#ffffff" stroke="#ffffff" stroke-width="0"/>
+<rect x="36" y="24" width="26" height="26" rx="7" fill="#1d4ed8" stroke="#1d4ed8" stroke-width="1.5"/>
+<text x="49" y="43" font-family="Inter, -apple-system, 'Segoe UI', Roboto, Helvetica, Arial, sans-serif" font-size="15" font-weight="800" fill="#fff" text-anchor="middle" letter-spacing="0" opacity="1">1</text>
+<text x="74" y="45" font-family="Inter, -apple-system, 'Segoe UI', Roboto, Helvetica, Arial, sans-serif" font-size="21" font-weight="800" fill="#1d4ed8" text-anchor="start" letter-spacing="-0.01em" opacity="1">Source</text>
+<rect x="300" y="56" width="760" height="156" rx="14" fill="#ffffff" stroke="#e2e8f0" stroke-width="1.5"/>
+<rect x="300" y="56" width="5" height="156" rx="2.5" fill="#1d4ed8" stroke="#1d4ed8" stroke-width="1.5"/>
+<text x="322" y="86" font-family="Inter, -apple-system, 'Segoe UI', Roboto, Helvetica, Arial, sans-serif" font-size="17" font-weight="750" fill="#0f172a" text-anchor="start" letter-spacing="0" opacity="1">GitHub Repository</text>
+<text x="322" y="108" font-family="Inter, -apple-system, 'Segoe UI', Roboto, Helvetica, Arial, sans-serif" font-size="13" font-weight="400" fill="#94a3b8" text-anchor="start" letter-spacing="0" opacity="1">Any public or private repo — entered as owner/name</text>
+<circle cx="1000" cy="92" r="20" fill="#eff6ff" stroke="#bfdbfe"/>
+<path transform="translate(986,78) scale(1.16)" fill="#1d4ed8" d="M12 0C5.37 0 0 5.37 0 12c0 5.3 3.44 9.8 8.21 11.39.6.11.82-.26.82-.58 0-.29-.01-1.04-.02-2.05-3.34.73-4.04-1.61-4.04-1.61-.55-1.39-1.33-1.76-1.33-1.76-1.09-.74.08-.73.08-.73 1.2.09 1.84 1.24 1.84 1.24 1.07 1.83 2.81 1.3 3.49.99.11-.78.42-1.3.76-1.6-2.67-.3-5.47-1.33-5.47-5.93 0-1.31.47-2.38 1.24-3.22-.13-.31-.54-1.52.12-3.17 0 0 1.01-.32 3.3 1.23a11.5 11.5 0 0 1 6.01 0c2.29-1.55 3.3-1.23 3.3-1.23.66 1.65.25 2.86.12 3.17.77.84 1.24 1.91 1.24 3.22 0 4.61-2.81 5.62-5.49 5.92.43.37.81 1.1.81 2.22 0 1.6-.01 2.9-.01 3.29 0 .32.22.7.83.58A12 12 0 0 0 24 12c0-6.63-5.37-12-12-12z"/>
+<rect x="322" y="156" width="168" height="38" rx="9" fill="#eff6ff" stroke="#bfdbfe" stroke-width="1.25"/>
+<text x="406" y="180" font-family="Inter, -apple-system, 'Segoe UI', Roboto, Helvetica, Arial, sans-serif" font-size="13.5" font-weight="600" fill="#1d4ed8" text-anchor="middle" letter-spacing="0" opacity="1">Repo Metadata</text>
+<rect x="508" y="156" width="168" height="38" rx="9" fill="#eff6ff" stroke="#bfdbfe" stroke-width="1.25"/>
+<text x="592" y="180" font-family="Inter, -apple-system, 'Segoe UI', Roboto, Helvetica, Arial, sans-serif" font-size="13.5" font-weight="600" fill="#1d4ed8" text-anchor="middle" letter-spacing="0" opacity="1">Commits &amp; Authors</text>
+<rect x="694" y="156" width="168" height="38" rx="9" fill="#eff6ff" stroke="#bfdbfe" stroke-width="1.25"/>
+<text x="778" y="180" font-family="Inter, -apple-system, 'Segoe UI', Roboto, Helvetica, Arial, sans-serif" font-size="13.5" font-weight="600" fill="#1d4ed8" text-anchor="middle" letter-spacing="0" opacity="1">Recursive Git Tree</text>
+<rect x="880" y="156" width="168" height="38" rx="9" fill="#eff6ff" stroke="#bfdbfe" stroke-width="1.25"/>
+<text x="964" y="180" font-family="Inter, -apple-system, 'Segoe UI', Roboto, Helvetica, Arial, sans-serif" font-size="13.5" font-weight="600" fill="#1d4ed8" text-anchor="middle" letter-spacing="0" opacity="1">File Contents</text>
+<rect x="1100" y="56" width="316" height="176" rx="14" fill="#ffffff" stroke="#e2e8f0" stroke-width="1.5"/>
+<text x="1120" y="88" font-family="Inter, -apple-system, 'Segoe UI', Roboto, Helvetica, Arial, sans-serif" font-size="16" font-weight="750" fill="#1d4ed8" text-anchor="start" letter-spacing="0" opacity="1">Accessed via</text>
+<circle cx="1126" cy="112" r="8" fill="none" stroke="#1d4ed8" stroke-width="1.6"/>
+<path d="M 1122 112 l 3 3 l 5 -6" fill="none" stroke="#1d4ed8" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"/>
+<text x="1142" y="116" font-family="Inter, -apple-system, 'Segoe UI', Roboto, Helvetica, Arial, sans-serif" font-size="13.5" font-weight="400" fill="#475569" text-anchor="start" letter-spacing="0" opacity="1">GitHub REST API (Octokit)</text>
+<circle cx="1126" cy="142" r="8" fill="none" stroke="#1d4ed8" stroke-width="1.6"/>
+<path d="M 1122 142 l 3 3 l 5 -6" fill="none" stroke="#1d4ed8" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"/>
+<text x="1142" y="146" font-family="Inter, -apple-system, 'Segoe UI', Roboto, Helvetica, Arial, sans-serif" font-size="13.5" font-weight="400" fill="#475569" text-anchor="start" letter-spacing="0" opacity="1">Token-aware private repos</text>
+<circle cx="1126" cy="172" r="8" fill="none" stroke="#1d4ed8" stroke-width="1.6"/>
+<path d="M 1122 172 l 3 3 l 5 -6" fill="none" stroke="#1d4ed8" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"/>
+<text x="1142" y="176" font-family="Inter, -apple-system, 'Segoe UI', Roboto, Helvetica, Arial, sans-serif" font-size="13.5" font-weight="400" fill="#475569" text-anchor="start" letter-spacing="0" opacity="1">Languages &amp; branches</text>
+<circle cx="1126" cy="202" r="8" fill="none" stroke="#1d4ed8" stroke-width="1.6"/>
+<path d="M 1122 202 l 3 3 l 5 -6" fill="none" stroke="#1d4ed8" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"/>
+<text x="1142" y="206" font-family="Inter, -apple-system, 'Segoe UI', Roboto, Helvetica, Arial, sans-serif" font-size="13.5" font-weight="400" fill="#475569" text-anchor="start" letter-spacing="0" opacity="1">Rate-limit handling</text>
+<path d="M 470 212 L 470 250" fill="none" stroke="#1d4ed8" stroke-width="2" marker-end="url(#arrow)"/>
+<path d="M 680 212 L 680 250" fill="none" stroke="#1d4ed8" stroke-width="2" marker-end="url(#arrow)"/>
+<path d="M 890 212 L 890 250" fill="none" stroke="#1d4ed8" stroke-width="2" marker-end="url(#arrow)"/>
+<text x="680" y="236" font-family="Inter, -apple-system, 'Segoe UI', Roboto, Helvetica, Arial, sans-serif" font-size="13" font-weight="650" fill="#1d4ed8" text-anchor="middle" letter-spacing="0" opacity="1">Fetch · Index · Retrieve</text>
+<rect x="36" y="280" width="26" height="26" rx="7" fill="#7c3aed" stroke="#7c3aed" stroke-width="1.5"/>
+<text x="49" y="299" font-family="Inter, -apple-system, 'Segoe UI', Roboto, Helvetica, Arial, sans-serif" font-size="15" font-weight="800" fill="#fff" text-anchor="middle" letter-spacing="0" opacity="1">2</text>
+<text x="74" y="301" font-family="Inter, -apple-system, 'Segoe UI', Roboto, Helvetica, Arial, sans-serif" font-size="21" font-weight="800" fill="#7c3aed" text-anchor="start" letter-spacing="-0.01em" opacity="1">The Agent Engine</text>
+<rect x="24" y="312" width="1432" height="470" rx="18" fill="#fcfcfd" stroke="#e2e8f0" stroke-width="1.5"/>
+<rect x="44" y="360" width="92" height="64" rx="12" fill="#ffffff" stroke="#cbd5e1" stroke-width="1.5"/>
+<rect x="74" y="376" width="32" height="22" rx="2" fill="none" stroke="#475569" stroke-width="1.8"/><rect x="84" y="400" width="12" height="3" rx="1.5" fill="#475569"/>
+<text x="90" y="440" font-family="Inter, -apple-system, 'Segoe UI', Roboto, Helvetica, Arial, sans-serif" font-size="12.5" font-weight="650" fill="#475569" text-anchor="middle" letter-spacing="0" opacity="1">Desktop</text>
+<rect x="44" y="470" width="92" height="64" rx="12" fill="#ffffff" stroke="#cbd5e1" stroke-width="1.5"/>
+<rect x="80" y="484" width="20" height="34" rx="3.5" fill="none" stroke="#475569" stroke-width="1.8"/><circle cx="90" cy="513" r="1.6" fill="#475569"/>
+<text x="90" y="550" font-family="Inter, -apple-system, 'Segoe UI', Roboto, Helvetica, Arial, sans-serif" font-size="12.5" font-weight="650" fill="#475569" text-anchor="middle" letter-spacing="0" opacity="1">Mobile</text>
+<rect x="160" y="372" width="132" height="150" rx="13" fill="#f5f3ff" stroke="#ddd6fe" stroke-width="1.5"/>
+<text x="226" y="432" font-family="Inter, -apple-system, 'Segoe UI', Roboto, Helvetica, Arial, sans-serif" font-size="16" font-weight="750" fill="#6a2cd6" text-anchor="middle" letter-spacing="0" opacity="1">Next.js</text>
+<text x="226" y="456" font-family="Inter, -apple-system, 'Segoe UI', Roboto, Helvetica, Arial, sans-serif" font-size="13" font-weight="400" fill="#7c3aed" text-anchor="middle" letter-spacing="0" opacity="1">React UI</text>
+<text x="226" y="408" font-family="Inter, -apple-system, 'Segoe UI', Roboto, Helvetica, Arial, sans-serif" font-size="18" font-weight="800" fill="#6a2cd6" text-anchor="middle" letter-spacing="0" opacity="1">▲</text>
+<path d="M 136 392 L 158 404" fill="none" stroke="#94a3b8" stroke-width="1.6" stroke-dasharray="4 4" marker-end="url(#arrow)"/>
+<path d="M 136 502 L 158 490" fill="none" stroke="#94a3b8" stroke-width="1.6" stroke-dasharray="4 4" marker-end="url(#arrow)"/>
+<rect x="340" y="340" width="720" height="74" rx="14" fill="#ffffff" stroke="#e2e8f0" stroke-width="1.5"/>
+<rect x="340" y="340" width="5" height="74" rx="2.5" fill="#6a2cd6" stroke="#6a2cd6" stroke-width="1.5"/>
+<text x="362" y="370" font-family="Inter, -apple-system, 'Segoe UI', Roboto, Helvetica, Arial, sans-serif" font-size="17" font-weight="750" fill="#0f172a" text-anchor="start" letter-spacing="0" opacity="1">API Orchestration — Next.js Route Handlers</text>
+<text x="362" y="396" font-family="'SF Mono', ui-monospace, 'Roboto Mono', Menlo, Consolas, monospace" font-size="13" font-weight="400" fill="#475569" text-anchor="start" letter-spacing="0" opacity="1">/repo · /codebase-map · /ask · /plan · /diff · /verification · /final-report</text>
+<path d="M 292 432 L 338 392" fill="none" stroke="#7c3aed" stroke-width="1.8" stroke-dasharray="5 4" marker-end="url(#arrowP)"/>
+<rect x="340" y="452" width="224" height="196" rx="14" fill="#ffffff" stroke="#e2e8f0" stroke-width="1.5"/>
+<rect x="340" y="452" width="5" height="196" rx="2.5" fill="#7c3aed" stroke="#7c3aed" stroke-width="1.5"/>
+<text x="362" y="482" font-family="Inter, -apple-system, 'Segoe UI', Roboto, Helvetica, Arial, sans-serif" font-size="17" font-weight="750" fill="#0f172a" text-anchor="start" letter-spacing="0" opacity="1">Indexer &amp; Classifier</text>
+<circle cx="365" cy="512" r="2.6" fill="#7c3aed"/>
+<text x="376" y="516" font-family="Inter, -apple-system, 'Segoe UI', Roboto, Helvetica, Arial, sans-serif" font-size="14" font-weight="400" fill="#475569" text-anchor="start" letter-spacing="0" opacity="1">Build file tree</text>
+<circle cx="365" cy="540" r="2.6" fill="#7c3aed"/>
+<text x="376" y="544" font-family="Inter, -apple-system, 'Segoe UI', Roboto, Helvetica, Arial, sans-serif" font-size="14" font-weight="400" fill="#475569" text-anchor="start" letter-spacing="0" opacity="1">Detect stack &amp; langs</text>
+<circle cx="365" cy="568" r="2.6" fill="#7c3aed"/>
+<text x="376" y="572" font-family="Inter, -apple-system, 'Segoe UI', Roboto, Helvetica, Arial, sans-serif" font-size="14" font-weight="400" fill="#475569" text-anchor="start" letter-spacing="0" opacity="1">Classify files</text>
+<circle cx="365" cy="596" r="2.6" fill="#7c3aed"/>
+<text x="376" y="600" font-family="Inter, -apple-system, 'Segoe UI', Roboto, Helvetica, Arial, sans-serif" font-size="14" font-weight="400" fill="#475569" text-anchor="start" letter-spacing="0" opacity="1">Deterministic map cache</text>
+<path d="M 452 414 L 452 452" fill="none" stroke="#7c3aed" stroke-width="1.8" stroke-dasharray="5 4" marker-end="url(#arrowP)"/>
+<rect x="588" y="452" width="224" height="196" rx="14" fill="#ffffff" stroke="#e2e8f0" stroke-width="1.5"/>
+<rect x="588" y="452" width="5" height="196" rx="2.5" fill="#7c3aed" stroke="#7c3aed" stroke-width="1.5"/>
+<text x="610" y="482" font-family="Inter, -apple-system, 'Segoe UI', Roboto, Helvetica, Arial, sans-serif" font-size="17" font-weight="750" fill="#0f172a" text-anchor="start" letter-spacing="0" opacity="1">Retrieval Pipeline</text>
+<circle cx="613" cy="512" r="2.6" fill="#7c3aed"/>
+<text x="624" y="516" font-family="Inter, -apple-system, 'Segoe UI', Roboto, Helvetica, Arial, sans-serif" font-size="14" font-weight="400" fill="#475569" text-anchor="start" letter-spacing="0" opacity="1">Lexical keyword scan</text>
+<circle cx="613" cy="540" r="2.6" fill="#7c3aed"/>
+<text x="624" y="544" font-family="Inter, -apple-system, 'Segoe UI', Roboto, Helvetica, Arial, sans-serif" font-size="14" font-weight="400" fill="#475569" text-anchor="start" letter-spacing="0" opacity="1">Structural ranking</text>
+<circle cx="613" cy="568" r="2.6" fill="#7c3aed"/>
+<text x="624" y="572" font-family="Inter, -apple-system, 'Segoe UI', Roboto, Helvetica, Arial, sans-serif" font-size="14" font-weight="400" fill="#475569" text-anchor="start" letter-spacing="0" opacity="1">AI rerank (top-k)</text>
+<circle cx="613" cy="596" r="2.6" fill="#7c3aed"/>
+<text x="624" y="600" font-family="Inter, -apple-system, 'Segoe UI', Roboto, Helvetica, Arial, sans-serif" font-size="14" font-weight="400" fill="#475569" text-anchor="start" letter-spacing="0" opacity="1">Cited code snippets</text>
+<path d="M 700 414 L 700 452" fill="none" stroke="#7c3aed" stroke-width="1.8" stroke-dasharray="5 4" marker-end="url(#arrowP)"/>
+<rect x="836" y="452" width="224" height="196" rx="14" fill="#ffffff" stroke="#e2e8f0" stroke-width="1.5"/>
+<rect x="836" y="452" width="5" height="196" rx="2.5" fill="#7c3aed" stroke="#7c3aed" stroke-width="1.5"/>
+<text x="858" y="482" font-family="Inter, -apple-system, 'Segoe UI', Roboto, Helvetica, Arial, sans-serif" font-size="17" font-weight="750" fill="#0f172a" text-anchor="start" letter-spacing="0" opacity="1">Planner &amp; Diff</text>
+<circle cx="861" cy="512" r="2.6" fill="#7c3aed"/>
+<text x="872" y="516" font-family="Inter, -apple-system, 'Segoe UI', Roboto, Helvetica, Arial, sans-serif" font-size="14" font-weight="400" fill="#475569" text-anchor="start" letter-spacing="0" opacity="1">Task / intent classify</text>
+<circle cx="861" cy="540" r="2.6" fill="#7c3aed"/>
+<text x="872" y="544" font-family="Inter, -apple-system, 'Segoe UI', Roboto, Helvetica, Arial, sans-serif" font-size="14" font-weight="400" fill="#475569" text-anchor="start" letter-spacing="0" opacity="1">Change plan + risks</text>
+<circle cx="861" cy="568" r="2.6" fill="#7c3aed"/>
+<text x="872" y="572" font-family="Inter, -apple-system, 'Segoe UI', Roboto, Helvetica, Arial, sans-serif" font-size="14" font-weight="400" fill="#475569" text-anchor="start" letter-spacing="0" opacity="1">Proposed unified diff</text>
+<circle cx="861" cy="596" r="2.6" fill="#7c3aed"/>
+<text x="872" y="600" font-family="Inter, -apple-system, 'Segoe UI', Roboto, Helvetica, Arial, sans-serif" font-size="14" font-weight="400" fill="#475569" text-anchor="start" letter-spacing="0" opacity="1">Diff verification</text>
+<path d="M 948 414 L 948 452" fill="none" stroke="#7c3aed" stroke-width="1.8" stroke-dasharray="5 4" marker-end="url(#arrowP)"/>
+<path d="M 564 550 L 588 550" fill="none" stroke="#7c3aed" stroke-width="2" marker-end="url(#arrowP)"/>
+<path d="M 812 550 L 836 550" fill="none" stroke="#7c3aed" stroke-width="2" marker-end="url(#arrowP)"/>
+<rect x="340" y="680" width="720" height="82" rx="14" fill="#ffffff" stroke="#e2e8f0" stroke-width="1.5"/>
+<rect x="340" y="680" width="5" height="82" rx="2.5" fill="#6a2cd6" stroke="#6a2cd6" stroke-width="1.5"/>
+<text x="362" y="710" font-family="Inter, -apple-system, 'Segoe UI', Roboto, Helvetica, Arial, sans-serif" font-size="17" font-weight="750" fill="#0f172a" text-anchor="start" letter-spacing="0" opacity="1">AI Provider Layer</text>
+<text x="540" y="710" font-family="Inter, -apple-system, 'Segoe UI', Roboto, Helvetica, Arial, sans-serif" font-size="12" font-weight="400" fill="#94a3b8" text-anchor="start" letter-spacing="0" opacity="1">fallback chain</text>
+<text x="362" y="738" font-family="'SF Mono', ui-monospace, 'Roboto Mono', Menlo, Consolas, monospace" font-size="13.5" font-weight="600" fill="#475569" text-anchor="start" letter-spacing="0" opacity="1">OpenAI gpt-4o-mini  →  Groq llama-3.1-8b  →  Anthropic claude-haiku  →  Mock</text>
+<rect x="810" y="696" width="110" height="30" rx="9" fill="#f5f3ff" stroke="#ddd6fe" stroke-width="1.25"/>
+<text x="865" y="716" font-family="Inter, -apple-system, 'Segoe UI', Roboto, Helvetica, Arial, sans-serif" font-size="13.5" font-weight="600" fill="#6a2cd6" text-anchor="middle" letter-spacing="0" opacity="1">Cost Guard</text>
+<rect x="930" y="696" width="110" height="30" rx="9" fill="#f5f3ff" stroke="#ddd6fe" stroke-width="1.25"/>
+<text x="985" y="716" font-family="Inter, -apple-system, 'Segoe UI', Roboto, Helvetica, Arial, sans-serif" font-size="13.5" font-weight="600" fill="#6a2cd6" text-anchor="middle" letter-spacing="0" opacity="1">Prompt Cache</text>
+<path d="M 700 648 L 700 680" fill="none" stroke="#7c3aed" stroke-width="1.6" stroke-dasharray="3 4" marker-end="url(#arrowP)"/>
+<text x="708" y="668" font-family="Inter, -apple-system, 'Segoe UI', Roboto, Helvetica, Arial, sans-serif" font-size="11.5" font-weight="400" fill="#7c3aed" text-anchor="start" letter-spacing="0" opacity="1">AI calls</text>
+<rect x="1100" y="340" width="316" height="266" rx="14" fill="#ffffff" stroke="#e2e8f0" stroke-width="1.5"/>
+<text x="1120" y="372" font-family="Inter, -apple-system, 'Segoe UI', Roboto, Helvetica, Arial, sans-serif" font-size="16" font-weight="750" fill="#7c3aed" text-anchor="start" letter-spacing="0" opacity="1">Engine Principles</text>
+<circle cx="1126" cy="396" r="8" fill="none" stroke="#7c3aed" stroke-width="1.6"/>
+<path d="M 1122 396 l 3 3 l 5 -6" fill="none" stroke="#7c3aed" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"/>
+<text x="1142" y="400" font-family="Inter, -apple-system, 'Segoe UI', Roboto, Helvetica, Arial, sans-serif" font-size="13.5" font-weight="400" fill="#475569" text-anchor="start" letter-spacing="0" opacity="1">Grounded in real code</text>
+<circle cx="1126" cy="426" r="8" fill="none" stroke="#7c3aed" stroke-width="1.6"/>
+<path d="M 1122 426 l 3 3 l 5 -6" fill="none" stroke="#7c3aed" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"/>
+<text x="1142" y="430" font-family="Inter, -apple-system, 'Segoe UI', Roboto, Helvetica, Arial, sans-serif" font-size="13.5" font-weight="400" fill="#475569" text-anchor="start" letter-spacing="0" opacity="1">Answers cite source files</text>
+<circle cx="1126" cy="456" r="8" fill="none" stroke="#7c3aed" stroke-width="1.6"/>
+<path d="M 1122 456 l 3 3 l 5 -6" fill="none" stroke="#7c3aed" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"/>
+<text x="1142" y="460" font-family="Inter, -apple-system, 'Segoe UI', Roboto, Helvetica, Arial, sans-serif" font-size="13.5" font-weight="400" fill="#475569" text-anchor="start" letter-spacing="0" opacity="1">Deterministic indexing</text>
+<circle cx="1126" cy="486" r="8" fill="none" stroke="#7c3aed" stroke-width="1.6"/>
+<path d="M 1122 486 l 3 3 l 5 -6" fill="none" stroke="#7c3aed" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"/>
+<text x="1142" y="490" font-family="Inter, -apple-system, 'Segoe UI', Roboto, Helvetica, Arial, sans-serif" font-size="13.5" font-weight="400" fill="#475569" text-anchor="start" letter-spacing="0" opacity="1">Multi-provider fallback</text>
+<circle cx="1126" cy="516" r="8" fill="none" stroke="#7c3aed" stroke-width="1.6"/>
+<path d="M 1122 516 l 3 3 l 5 -6" fill="none" stroke="#7c3aed" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"/>
+<text x="1142" y="520" font-family="Inter, -apple-system, 'Segoe UI', Roboto, Helvetica, Arial, sans-serif" font-size="13.5" font-weight="400" fill="#475569" text-anchor="start" letter-spacing="0" opacity="1">Cost-guarded AI calls</text>
+<circle cx="1126" cy="546" r="8" fill="none" stroke="#7c3aed" stroke-width="1.6"/>
+<path d="M 1122 546 l 3 3 l 5 -6" fill="none" stroke="#7c3aed" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"/>
+<text x="1142" y="550" font-family="Inter, -apple-system, 'Segoe UI', Roboto, Helvetica, Arial, sans-serif" font-size="13.5" font-weight="400" fill="#475569" text-anchor="start" letter-spacing="0" opacity="1">Human approval gate</text>
+<circle cx="1126" cy="576" r="8" fill="none" stroke="#7c3aed" stroke-width="1.6"/>
+<path d="M 1122 576 l 3 3 l 5 -6" fill="none" stroke="#7c3aed" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"/>
+<text x="1142" y="580" font-family="Inter, -apple-system, 'Segoe UI', Roboto, Helvetica, Arial, sans-serif" font-size="13.5" font-weight="400" fill="#475569" text-anchor="start" letter-spacing="0" opacity="1">Audit-logged runs</text>
+<rect x="340" y="800" width="720" height="56" rx="12" fill="#fffbeb" stroke="#fde68a" stroke-width="1.5"/>
+<path transform="translate(362,816) scale(1.0)" fill="none" stroke="#b45309" stroke-width="1.8" d="M12 1 L22 5 V11 C22 17 18 21 12 23 C6 21 2 17 2 11 V5 Z"/>
+<path transform="translate(362,816)" fill="none" stroke="#b45309" stroke-width="1.8" stroke-linecap="round" d="M8 12 l3 3 l5 -6"/>
+<text x="396" y="826" font-family="Inter, -apple-system, 'Segoe UI', Roboto, Helvetica, Arial, sans-serif" font-size="15" font-weight="750" fill="#b45309" text-anchor="start" letter-spacing="0" opacity="1">Safety &amp; Human-Approval Gate</text>
+<text x="396" y="845" font-family="Inter, -apple-system, 'Segoe UI', Roboto, Helvetica, Arial, sans-serif" font-size="12.5" font-weight="400" fill="#92400e" text-anchor="start" letter-spacing="0" opacity="1">path validation · destructive-change block · nothing is applied without explicit approval</text>
+<path d="M 700 762 L 700 800" fill="none" stroke="#b45309" stroke-width="1.8" marker-end="url(#arrowA)"/>
+<rect x="36" y="884" width="26" height="26" rx="7" fill="#15803d" stroke="#15803d" stroke-width="1.5"/>
+<text x="49" y="903" font-family="Inter, -apple-system, 'Segoe UI', Roboto, Helvetica, Arial, sans-serif" font-size="15" font-weight="800" fill="#fff" text-anchor="middle" letter-spacing="0" opacity="1">3</text>
+<text x="74" y="905" font-family="Inter, -apple-system, 'Segoe UI', Roboto, Helvetica, Arial, sans-serif" font-size="21" font-weight="800" fill="#15803d" text-anchor="start" letter-spacing="-0.01em" opacity="1">Outputs &amp; State</text>
+<rect x="300" y="916" width="760" height="150" rx="14" fill="#ffffff" stroke="#e2e8f0" stroke-width="1.5"/>
+<rect x="300" y="916" width="5" height="150" rx="2.5" fill="#15803d" stroke="#15803d" stroke-width="1.5"/>
+<text x="322" y="946" font-family="Inter, -apple-system, 'Segoe UI', Roboto, Helvetica, Arial, sans-serif" font-size="17" font-weight="750" fill="#0f172a" text-anchor="start" letter-spacing="0" opacity="1">Agent Outputs</text>
+<text x="322" y="968" font-family="Inter, -apple-system, 'Segoe UI', Roboto, Helvetica, Arial, sans-serif" font-size="13" font-weight="400" fill="#94a3b8" text-anchor="start" letter-spacing="0" opacity="1">Everything the recruiter-facing UI renders</text>
+<rect x="322" y="976" width="134" height="34" rx="9" fill="#f0fdf4" stroke="#bbf7d0" stroke-width="1.25"/>
+<text x="389" y="998" font-family="Inter, -apple-system, 'Segoe UI', Roboto, Helvetica, Arial, sans-serif" font-size="13.5" font-weight="600" fill="#15803d" text-anchor="middle" letter-spacing="0" opacity="1">Grounded Answers</text>
+<rect x="469" y="976" width="134" height="34" rx="9" fill="#f0fdf4" stroke="#bbf7d0" stroke-width="1.25"/>
+<text x="536" y="998" font-family="Inter, -apple-system, 'Segoe UI', Roboto, Helvetica, Arial, sans-serif" font-size="13.5" font-weight="600" fill="#15803d" text-anchor="middle" letter-spacing="0" opacity="1">Change Plans</text>
+<rect x="616" y="976" width="134" height="34" rx="9" fill="#f0fdf4" stroke="#bbf7d0" stroke-width="1.25"/>
+<text x="683" y="998" font-family="Inter, -apple-system, 'Segoe UI', Roboto, Helvetica, Arial, sans-serif" font-size="13.5" font-weight="600" fill="#15803d" text-anchor="middle" letter-spacing="0" opacity="1">Proposed Diffs</text>
+<rect x="763" y="976" width="134" height="34" rx="9" fill="#f0fdf4" stroke="#bbf7d0" stroke-width="1.25"/>
+<text x="830" y="998" font-family="Inter, -apple-system, 'Segoe UI', Roboto, Helvetica, Arial, sans-serif" font-size="13.5" font-weight="600" fill="#15803d" text-anchor="middle" letter-spacing="0" opacity="1">Verification</text>
+<rect x="910" y="976" width="134" height="34" rx="9" fill="#f0fdf4" stroke="#bbf7d0" stroke-width="1.25"/>
+<text x="977" y="998" font-family="Inter, -apple-system, 'Segoe UI', Roboto, Helvetica, Arial, sans-serif" font-size="13.5" font-weight="600" fill="#15803d" text-anchor="middle" letter-spacing="0" opacity="1">Final Report</text>
+<text x="322" y="1038" font-family="Inter, -apple-system, 'Segoe UI', Roboto, Helvetica, Arial, sans-serif" font-size="13" font-weight="700" fill="#475569" text-anchor="start" letter-spacing="0" opacity="1">State:</text>
+<path d="M 380 1028 h 200 v 18 a 8 8 0 0 1 -8 8 h -184 a 8 8 0 0 1 -8 -8 z" fill="#f8fafc" stroke="#e2e8f0"/>
+<text x="480" y="1040" font-family="Inter, -apple-system, 'Segoe UI', Roboto, Helvetica, Arial, sans-serif" font-size="12" font-weight="400" fill="#475569" text-anchor="middle" letter-spacing="0" opacity="1">Run Store (localStorage)</text>
+<path d="M 604 1028 h 200 v 18 a 8 8 0 0 1 -8 8 h -184 a 8 8 0 0 1 -8 -8 z" fill="#f8fafc" stroke="#e2e8f0"/>
+<text x="704" y="1040" font-family="Inter, -apple-system, 'Segoe UI', Roboto, Helvetica, Arial, sans-serif" font-size="12" font-weight="400" fill="#475569" text-anchor="middle" letter-spacing="0" opacity="1">Codebase-Map Cache</text>
+<path d="M 828 1028 h 200 v 18 a 8 8 0 0 1 -8 8 h -184 a 8 8 0 0 1 -8 -8 z" fill="#f8fafc" stroke="#e2e8f0"/>
+<text x="928" y="1040" font-family="Inter, -apple-system, 'Segoe UI', Roboto, Helvetica, Arial, sans-serif" font-size="12" font-weight="400" fill="#475569" text-anchor="middle" letter-spacing="0" opacity="1">Recent Repos</text>
+<rect x="1100" y="916" width="316" height="206" rx="14" fill="#ffffff" stroke="#e2e8f0" stroke-width="1.5"/>
+<text x="1120" y="948" font-family="Inter, -apple-system, 'Segoe UI', Roboto, Helvetica, Arial, sans-serif" font-size="16" font-weight="750" fill="#15803d" text-anchor="start" letter-spacing="0" opacity="1">Guarantees</text>
+<circle cx="1126" cy="972" r="8" fill="none" stroke="#15803d" stroke-width="1.6"/>
+<path d="M 1122 972 l 3 3 l 5 -6" fill="none" stroke="#15803d" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"/>
+<text x="1142" y="976" font-family="Inter, -apple-system, 'Segoe UI', Roboto, Helvetica, Arial, sans-serif" font-size="13.5" font-weight="400" fill="#475569" text-anchor="start" letter-spacing="0" opacity="1">Human approval required</text>
+<circle cx="1126" cy="1002" r="8" fill="none" stroke="#15803d" stroke-width="1.6"/>
+<path d="M 1122 1002 l 3 3 l 5 -6" fill="none" stroke="#15803d" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"/>
+<text x="1142" y="1006" font-family="Inter, -apple-system, 'Segoe UI', Roboto, Helvetica, Arial, sans-serif" font-size="13.5" font-weight="400" fill="#475569" text-anchor="start" letter-spacing="0" opacity="1">Sources are cited</text>
+<circle cx="1126" cy="1032" r="8" fill="none" stroke="#15803d" stroke-width="1.6"/>
+<path d="M 1122 1032 l 3 3 l 5 -6" fill="none" stroke="#15803d" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"/>
+<text x="1142" y="1036" font-family="Inter, -apple-system, 'Segoe UI', Roboto, Helvetica, Arial, sans-serif" font-size="13.5" font-weight="400" fill="#475569" text-anchor="start" letter-spacing="0" opacity="1">Runs are replayable</text>
+<circle cx="1126" cy="1062" r="8" fill="none" stroke="#15803d" stroke-width="1.6"/>
+<path d="M 1122 1062 l 3 3 l 5 -6" fill="none" stroke="#15803d" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"/>
+<text x="1142" y="1066" font-family="Inter, -apple-system, 'Segoe UI', Roboto, Helvetica, Arial, sans-serif" font-size="13.5" font-weight="400" fill="#475569" text-anchor="start" letter-spacing="0" opacity="1">Nothing applied silently</text>
+<circle cx="1126" cy="1092" r="8" fill="none" stroke="#15803d" stroke-width="1.6"/>
+<path d="M 1122 1092 l 3 3 l 5 -6" fill="none" stroke="#15803d" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"/>
+<text x="1142" y="1096" font-family="Inter, -apple-system, 'Segoe UI', Roboto, Helvetica, Arial, sans-serif" font-size="13.5" font-weight="400" fill="#475569" text-anchor="start" letter-spacing="0" opacity="1">Reproducible output</text>
+<path d="M 700 856 L 680 916" fill="none" stroke="#15803d" stroke-width="1.8" marker-end="url(#arrowG)"/>
+<text x="690" y="890" font-family="Inter, -apple-system, 'Segoe UI', Roboto, Helvetica, Arial, sans-serif" font-size="12" font-weight="650" fill="#15803d" text-anchor="start" letter-spacing="0" opacity="1">Approved result</text>
+<text x="36" y="1086" font-family="Inter, -apple-system, 'Segoe UI', Roboto, Helvetica, Arial, sans-serif" font-size="13" font-weight="750" fill="#475569" text-anchor="start" letter-spacing="0.02em" opacity="1">Infrastructure</text>
+<rect x="36" y="1092" width="150" height="40" rx="9" fill="#ffffff" stroke="#e2e8f0" stroke-width="1.25"/>
+<text x="111" y="1117" font-family="Inter, -apple-system, 'Segoe UI', Roboto, Helvetica, Arial, sans-serif" font-size="13.5" font-weight="600" fill="#0f172a" text-anchor="middle" letter-spacing="0" opacity="1">Next.js</text>
+<rect x="198" y="1092" width="150" height="40" rx="9" fill="#ffffff" stroke="#e2e8f0" stroke-width="1.25"/>
+<text x="273" y="1117" font-family="Inter, -apple-system, 'Segoe UI', Roboto, Helvetica, Arial, sans-serif" font-size="13.5" font-weight="600" fill="#0f172a" text-anchor="middle" letter-spacing="0" opacity="1">Vercel</text>
+<rect x="360" y="1092" width="150" height="40" rx="9" fill="#ffffff" stroke="#e2e8f0" stroke-width="1.25"/>
+<text x="435" y="1117" font-family="Inter, -apple-system, 'Segoe UI', Roboto, Helvetica, Arial, sans-serif" font-size="13.5" font-weight="600" fill="#0f172a" text-anchor="middle" letter-spacing="0" opacity="1">TypeScript / React</text>
+<rect x="522" y="1092" width="150" height="40" rx="9" fill="#ffffff" stroke="#e2e8f0" stroke-width="1.25"/>
+<text x="597" y="1117" font-family="Inter, -apple-system, 'Segoe UI', Roboto, Helvetica, Arial, sans-serif" font-size="13.5" font-weight="600" fill="#0f172a" text-anchor="middle" letter-spacing="0" opacity="1">GitHub API (Octokit)</text>
+<rect x="684" y="1092" width="150" height="40" rx="9" fill="#ffffff" stroke="#e2e8f0" stroke-width="1.25"/>
+<text x="759" y="1117" font-family="Inter, -apple-system, 'Segoe UI', Roboto, Helvetica, Arial, sans-serif" font-size="13.5" font-weight="600" fill="#0f172a" text-anchor="middle" letter-spacing="0" opacity="1">OpenAI</text>
+<rect x="846" y="1092" width="150" height="40" rx="9" fill="#ffffff" stroke="#e2e8f0" stroke-width="1.25"/>
+<text x="921" y="1117" font-family="Inter, -apple-system, 'Segoe UI', Roboto, Helvetica, Arial, sans-serif" font-size="13.5" font-weight="600" fill="#0f172a" text-anchor="middle" letter-spacing="0" opacity="1">Groq · Anthropic</text>
+<rect x="1100" y="1072" width="316" height="66" rx="12" fill="#ffffff" stroke="#e2e8f0" stroke-width="1.5"/>
+<text x="1116" y="1094" font-family="Inter, -apple-system, 'Segoe UI', Roboto, Helvetica, Arial, sans-serif" font-size="12.5" font-weight="750" fill="#0f172a" text-anchor="start" letter-spacing="0" opacity="1">Legend</text>
+<line x1="1116" y1="1112" x2="1140" y2="1112" stroke="#1d4ed8" stroke-width="2.4"/>
+<text x="1148" y="1116" font-family="Inter, -apple-system, 'Segoe UI', Roboto, Helvetica, Arial, sans-serif" font-size="12" font-weight="400" fill="#475569" text-anchor="start" letter-spacing="0" opacity="1">Data flow</text>
+<line x1="1266" y1="1112" x2="1290" y2="1112" stroke="#7c3aed" stroke-width="2.4" stroke-dasharray="4 3"/>
+<text x="1298" y="1116" font-family="Inter, -apple-system, 'Segoe UI', Roboto, Helvetica, Arial, sans-serif" font-size="12" font-weight="400" fill="#475569" text-anchor="start" letter-spacing="0" opacity="1">AI calls</text>
+<line x1="1116" y1="1132" x2="1140" y2="1132" stroke="#b45309" stroke-width="2.4"/>
+<text x="1148" y="1136" font-family="Inter, -apple-system, 'Segoe UI', Roboto, Helvetica, Arial, sans-serif" font-size="12" font-weight="400" fill="#475569" text-anchor="start" letter-spacing="0" opacity="1">Approval gate</text>
+<line x1="1266" y1="1132" x2="1290" y2="1132" stroke="#15803d" stroke-width="2.4"/>
+<text x="1298" y="1136" font-family="Inter, -apple-system, 'Segoe UI', Roboto, Helvetica, Arial, sans-serif" font-size="12" font-weight="400" fill="#475569" text-anchor="start" letter-spacing="0" opacity="1">Output</text>
+</svg>

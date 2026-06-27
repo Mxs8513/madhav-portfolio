@@ -1145,7 +1145,8 @@ a { color: var(--accent); }
 }
 
 /* StreamForge technical documentation */
-.streamforge-docs {
+.streamforge-docs,
+.project-docs {
   margin-top: 72px;
   padding-top: 56px;
   border-top: 1px solid var(--border-strong);
@@ -1826,7 +1827,8 @@ a { color: var(--accent); }
 
   .metric-strip { grid-template-columns: repeat(2, 1fr); }
 
-  .streamforge-docs { margin-top: 56px; padding-top: 44px; }
+  .streamforge-docs,
+  .project-docs { margin-top: 56px; padding-top: 44px; }
   .docs-block { margin-top: 44px; }
   .docs-block--recovery { margin-top: 56px; padding-top: 44px; }
   .docs-intro h4 { font-size: 26px; }
