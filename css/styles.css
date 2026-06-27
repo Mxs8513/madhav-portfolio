@@ -161,6 +161,10 @@ a { color: var(--accent); }
   display: flex;
   flex-direction: column;
   gap: 2px;
+  min-height: 0;
+  overflow-y: auto;
+  padding-right: 2px;
+  scrollbar-width: thin;
 }
 .sidebar-links a {
   display: block;
@@ -179,6 +183,95 @@ a { color: var(--accent); }
   background: var(--accent-tint);
   color: var(--accent);
   font-weight: 500;
+}
+
+.sidebar-link-row {
+  display: grid;
+  grid-template-columns: minmax(0, 1fr) 32px;
+  align-items: center;
+  gap: 2px;
+}
+
+.sidebar-link-row > a {
+  min-width: 0;
+}
+
+.sidebar-disclosure {
+  width: 32px;
+  height: 32px;
+  display: grid;
+  place-items: center;
+  border: 0;
+  border-radius: 6px;
+  background: transparent;
+  color: var(--text-faint);
+  cursor: pointer;
+  transition: background 0.15s ease, color 0.15s ease;
+}
+
+.sidebar-disclosure:hover {
+  background: var(--bg-tint);
+  color: var(--text);
+}
+
+.sidebar-disclosure:focus-visible {
+  outline: 2px solid var(--accent);
+  outline-offset: 1px;
+}
+
+.sidebar-disclosure svg {
+  width: 16px;
+  height: 16px;
+  fill: none;
+  stroke: currentColor;
+  stroke-width: 2;
+  stroke-linecap: round;
+  stroke-linejoin: round;
+  transition: transform 0.18s ease;
+}
+
+.sidebar-disclosure[aria-expanded="true"] svg {
+  transform: rotate(180deg);
+}
+
+.sidebar-subnav {
+  list-style: none;
+  margin: 3px 0 7px 12px;
+  padding-left: 10px;
+  border-left: 1px solid var(--border-strong);
+}
+
+.sidebar-subnav a {
+  padding: 7px 9px;
+  border-radius: 6px;
+  font-size: 13px;
+  line-height: 1.35;
+}
+
+.sidebar-subnav--nested {
+  margin: 2px 0 5px 8px;
+  padding-left: 9px;
+  border-left-color: var(--accent-border);
+}
+
+.sidebar-subnav--nested a {
+  color: var(--text-faint);
+  font-size: 12.25px;
+  line-height: 1.35;
+}
+
+.sidebar-link-row.is-context > a {
+  color: var(--accent);
+  font-weight: 500;
+}
+
+#streamforge,
+#repopulse,
+#riskos,
+#diya,
+#streamforge-architecture,
+#streamforge-recovery {
+  scroll-margin-top: 24px;
 }
 
 .sidebar-foot {
@@ -1681,6 +1774,8 @@ a { color: var(--accent); }
   .sidebar {
     inset: 56px 0 auto 0;
     width: 100%;
+    max-height: calc(100dvh - 56px);
+    overflow-y: auto;
     border-right: 0;
     border-bottom: 1px solid var(--border);
     padding: 12px 20px 20px;
@@ -1692,6 +1787,16 @@ a { color: var(--accent); }
 
   .sidebar-brand { display: none; }
   .sidebar-links a { padding: 12px; font-size: 15px; }
+  .sidebar-links .sidebar-subnav a { padding: 9px 10px; font-size: 14px; }
+  .sidebar-links .sidebar-subnav--nested a { font-size: 13px; }
+  .sidebar-link-row { grid-template-columns: minmax(0, 1fr) 40px; }
+  .sidebar-disclosure { width: 40px; height: 40px; }
+  #streamforge,
+  #repopulse,
+  #riskos,
+  #diya,
+  #streamforge-architecture,
+  #streamforge-recovery { scroll-margin-top: 76px; }
   .sidebar-foot {
     flex-direction: row;
     gap: 20px;

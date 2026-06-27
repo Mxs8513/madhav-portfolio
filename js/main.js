@@ -37,6 +37,21 @@
 (function () {
   const toggle = document.querySelector(".topbar-toggle");
   const sidebarLinks = document.querySelectorAll(".sidebar-links a");
+  const disclosures = document.querySelectorAll(".sidebar-disclosure");
+  const projectsGroup = document.querySelector('[data-nav-group="projects"]');
+  const streamforgeGroup = document.querySelector('[data-nav-group="streamforge"]');
+
+  const setExpanded = (button, expanded) => {
+    const panel = document.getElementById(button.getAttribute("aria-controls"));
+    button.setAttribute("aria-expanded", String(expanded));
+    panel.toggleAttribute("hidden", !expanded);
+  };
+
+  disclosures.forEach((button) =>
+    button.addEventListener("click", () => {
+      setExpanded(button, button.getAttribute("aria-expanded") !== "true");
+    })
+  );
 
   // ----- Mobile menu -----
   toggle.addEventListener("click", () => {
@@ -46,6 +61,13 @@
 
   sidebarLinks.forEach((link) =>
     link.addEventListener("click", () => {
+      if (link.getAttribute("href") === "#projects") {
+        setExpanded(projectsGroup.querySelector(":scope > .sidebar-link-row .sidebar-disclosure"), true);
+      }
+      if (link.getAttribute("href") === "#streamforge") {
+        setExpanded(projectsGroup.querySelector(":scope > .sidebar-link-row .sidebar-disclosure"), true);
+        setExpanded(streamforgeGroup.querySelector(":scope > .sidebar-link-row .sidebar-disclosure"), true);
+      }
       document.body.classList.remove("menu-open");
       toggle.setAttribute("aria-expanded", "false");
     })
@@ -56,10 +78,37 @@
     .map((link) => document.querySelector(link.getAttribute("href")))
     .filter(Boolean);
 
+  const projectIds = new Set([
+    "projects",
+    "streamforge",
+    "streamforge-architecture",
+    "streamforge-recovery",
+    "repopulse",
+    "riskos",
+    "diya",
+  ]);
+  const streamforgeIds = new Set([
+    "streamforge",
+    "streamforge-architecture",
+    "streamforge-recovery",
+  ]);
+  let previousId = null;
+
   const setActive = (id) => {
     sidebarLinks.forEach((link) =>
       link.classList.toggle("is-active", link.getAttribute("href") === "#" + id)
     );
+
+    const inProjects = projectIds.has(id);
+    const inStreamForge = streamforgeIds.has(id);
+    projectsGroup.querySelector(":scope > .sidebar-link-row").classList.toggle("is-context", inProjects);
+    streamforgeGroup.querySelector(":scope > .sidebar-link-row").classList.toggle("is-context", inStreamForge);
+
+    if (id !== previousId) {
+      setExpanded(projectsGroup.querySelector(":scope > .sidebar-link-row .sidebar-disclosure"), inProjects);
+      setExpanded(streamforgeGroup.querySelector(":scope > .sidebar-link-row .sidebar-disclosure"), inStreamForge);
+      previousId = id;
+    }
   };
 
   const onScroll = () => {
@@ -67,7 +116,8 @@
     const probe = window.scrollY + window.innerHeight / 3;
     let current = sections[0];
     for (const section of sections) {
-      if (section.offsetTop <= probe) current = section;
+      const sectionTop = section.getBoundingClientRect().top + window.scrollY;
+      if (sectionTop <= probe) current = section;
     }
     if (current) setActive(current.id);
   };

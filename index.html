@@ -56,7 +56,31 @@
       <li><a href="#home" class="is-active">Home</a></li>
       <li><a href="#about">About Me</a></li>
       <li><a href="#academics">Academics</a></li>
-      <li><a href="#projects">Projects</a></li>
+      <li class="sidebar-group" data-nav-group="projects">
+        <div class="sidebar-link-row">
+          <a href="#projects">Projects</a>
+          <button class="sidebar-disclosure" type="button" aria-label="Toggle project links" aria-expanded="false" aria-controls="sidebar-projects">
+            <svg viewBox="0 0 24 24" aria-hidden="true"><path d="m6 9 6 6 6-6" /></svg>
+          </button>
+        </div>
+        <ul class="sidebar-subnav" id="sidebar-projects" hidden>
+          <li class="sidebar-group sidebar-group--nested" data-nav-group="streamforge">
+            <div class="sidebar-link-row">
+              <a href="#streamforge">StreamForge</a>
+              <button class="sidebar-disclosure" type="button" aria-label="Toggle StreamForge documentation links" aria-expanded="false" aria-controls="sidebar-streamforge">
+                <svg viewBox="0 0 24 24" aria-hidden="true"><path d="m6 9 6 6 6-6" /></svg>
+              </button>
+            </div>
+            <ul class="sidebar-subnav sidebar-subnav--nested" id="sidebar-streamforge" hidden>
+              <li><a href="#streamforge-architecture">End-to-End System Architecture</a></li>
+              <li><a href="#streamforge-recovery">Fault Recovery Storyboard</a></li>
+            </ul>
+          </li>
+          <li><a href="#repopulse">RepoPulse Agent</a></li>
+          <li><a href="#riskos">RiskOS AI</a></li>
+          <li><a href="#diya">D.I.Y.A</a></li>
+        </ul>
+      </li>
       <li><a href="#research">Research</a></li>
       <li><a href="#experience">Experience</a></li>
       <li><a href="#skills">Skills</a></li>
@@ -327,7 +351,7 @@
             </p>
           </header>
 
-          <div class="docs-block">
+          <div class="docs-block" id="streamforge-architecture">
             <div class="docs-heading">
               <span>Diagram 01</span>
               <h5>End-to-End System Architecture</h5>
@@ -377,7 +401,7 @@
             </aside>
           </div>
 
-          <div class="docs-block docs-block--recovery">
+          <div class="docs-block docs-block--recovery" id="streamforge-recovery">
             <div class="docs-heading">
               <span>Diagram 02</span>
               <h5>Fault Recovery Storyboard</h5>
