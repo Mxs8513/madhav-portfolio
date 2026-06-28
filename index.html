@@ -406,23 +406,23 @@
             <div class="docs-walkthrough" aria-label="StreamForge architecture walkthrough">
               <article class="doc-step doc-step--blue">
                 <span class="doc-step-number">1</span>
-                <div><h6>Data ingestion and replay</h6><p>Kafka/Redpanda is the durable front door. The generator writes keyed records across six partitions; retaining those records lets a reassigned worker resume from checkpoint-owned offsets instead of trusting volatile in-memory progress.</p></div>
+                <div><h6>Data ingestion and replay</h6><p><strong>Kafka/Redpanda</strong> is the durable front door. The generator writes keyed records across six partitions; retaining those records lets a reassigned worker resume from <strong>checkpoint-owned offsets</strong> instead of trusting volatile in-memory progress.</p></div>
               </article>
               <article class="doc-step doc-step--purple">
                 <span class="doc-step-number">2</span>
-                <div><h6>Coordinator control plane</h6><p>The Go coordinator manages membership, assigns six Kafka partitions and 64 key buckets, receives heartbeats, advances cluster epochs, and drives aligned checkpoint barriers. It controls ownership but does not process event payloads itself.</p></div>
+                <div><h6>Coordinator control plane</h6><p>The <strong>Go coordinator</strong> manages membership, assigns six Kafka partitions and 64 key buckets, receives heartbeats, advances cluster epochs, and drives <strong>aligned checkpoint barriers</strong>. It controls ownership but does not process event payloads itself.</p></div>
               </article>
               <article class="doc-step doc-step--purple">
                 <span class="doc-step-number">3</span>
-                <div><h6>Worker data plane</h6><p>Each worker consumes its assigned partitions and hashes every key into one authoritative bucket. Local keys enter that worker's aggregation loop; remote keys cross the gRPC shuffle to their owner, which updates event-time tumbling windows in BadgerDB.</p></div>
+                <div><h6>Worker data plane</h6><p>Each worker consumes its assigned partitions and hashes every key into one authoritative bucket. Local keys enter that worker's aggregation loop; remote keys cross the <strong>gRPC shuffle</strong> to their owner, which updates <strong>event-time tumbling windows</strong> in <strong>BadgerDB</strong>.</p></div>
               </article>
               <article class="doc-step doc-step--green">
                 <span class="doc-step-number">4</span>
-                <div><h6>Aligned checkpoint and staged commit</h6><p>Prepare pauses sources and drains in-flight work. Commit snapshots BadgerDB state with Kafka offsets and stages pending Parquet. Only after every worker ACKs does one checkpoint metadata write make those staged files part of committed output.</p></div>
+                <div><h6>Aligned checkpoint and staged commit</h6><p>Prepare pauses sources and drains in-flight work. Commit snapshots BadgerDB state with Kafka offsets and stages pending Parquet. Only after every worker ACKs does one checkpoint metadata write make those staged files part of <strong>committed output</strong>.</p></div>
               </article>
               <article class="doc-step doc-step--green">
                 <span class="doc-step-number">5</span>
-                <div><h6>Lakehouse and time travel</h6><p>MinIO provides the S3-compatible object store for snapshots and staged Parquet. The verifier reads files referenced by completed checkpoints, while the Iceberg sink creates one table snapshot per checkpoint for atomic reads and time-travel queries.</p></div>
+                <div><h6>Lakehouse and time travel</h6><p><strong>MinIO</strong> provides the S3-compatible object store for snapshots and staged Parquet. The verifier reads files referenced by completed checkpoints, while the <strong>Iceberg sink</strong> creates one table snapshot per checkpoint for atomic reads and <strong>time-travel queries</strong>.</p></div>
               </article>
               <article class="doc-step doc-step--blue">
                 <span class="doc-step-number">6</span>
@@ -621,23 +621,23 @@
             <div class="docs-walkthrough" aria-label="RepoPulse architecture walkthrough">
               <article class="doc-step doc-step--blue">
                 <span class="doc-step-number">1</span>
-                <div><h6>Source &amp; indexing</h6><p>Any public or private GitHub repo is connected as <code>owner/name</code>. The Octokit REST client pulls metadata, commit history, the recursive git tree, and file contents; RepoPulse then builds a deterministic file map and detects the stack — no AI needed to know what the repo contains.</p></div>
+                <div><h6>Source &amp; indexing</h6><p>Any public or private GitHub repo is connected as <code>owner/name</code>. The <strong>Octokit REST client</strong> pulls metadata, commit history, the recursive git tree, and file contents; RepoPulse then builds a <strong>deterministic file map</strong> and <strong>detects the stack</strong> — no AI needed to know what the repo contains.</p></div>
               </article>
               <article class="doc-step doc-step--purple">
                 <span class="doc-step-number">2</span>
-                <div><h6>Grounded retrieval</h6><p>A multi-stage pipeline — lexical keyword scan, structural ranking, then optional AI rerank of the top candidates — selects the most relevant files. Every answer and plan is grounded in real code and cites the exact source files it used.</p></div>
+                <div><h6>Grounded retrieval</h6><p>A <strong>multi-stage pipeline</strong> — <strong>lexical keyword scan</strong>, <strong>structural ranking</strong>, then optional <strong>AI rerank</strong> of the top candidates — selects the most relevant files. Every answer and plan is grounded in real code and <strong>cites the exact source files</strong> it used.</p></div>
               </article>
               <article class="doc-step doc-step--purple">
                 <span class="doc-step-number">3</span>
-                <div><h6>Planning, diffs &amp; the AI chain</h6><p>The engine classifies task intent, proposes a change plan with risks and a unified diff, and verifies it. All model calls run behind a provider fallback chain — OpenAI <code>gpt-4o-mini</code> → Groq → Anthropic → deterministic mock — guarded by a daily cost budget and a prompt cache.</p></div>
+                <div><h6>Planning, diffs &amp; the AI chain</h6><p>The engine classifies task intent, proposes a <strong>change plan</strong> with risks and a <strong>unified diff</strong>, and verifies it. All model calls run behind a <strong>provider fallback chain</strong> — OpenAI <code>gpt-4o-mini</code> → Groq → Anthropic → deterministic mock — guarded by a <strong>daily cost budget</strong> and a <strong>prompt cache</strong>.</p></div>
               </article>
               <article class="doc-step doc-step--red">
                 <span class="doc-step-number">4</span>
-                <div><h6>Safety &amp; human approval</h6><p>A safety gate validates file paths and blocks destructive or approval-bypassing requests. The agent never applies a change on its own — a proposed diff always waits for explicit human approval before anything is considered done.</p></div>
+                <div><h6>Safety &amp; human approval</h6><p>A <strong>safety gate</strong> validates file paths and blocks destructive or approval-bypassing requests. The agent never applies a change on its own — a proposed diff always waits for <strong>explicit human approval</strong> before anything is considered done.</p></div>
               </article>
               <article class="doc-step doc-step--green">
                 <span class="doc-step-number">5</span>
-                <div><h6>Outputs &amp; audit trail</h6><p>Grounded answers, change plans, proposed diffs, verification results, and a shareable final engineering report are produced for the UI. Every agent run is written to a replayable run store, so each result stays inspectable and reproducible.</p></div>
+                <div><h6>Outputs &amp; audit trail</h6><p>Grounded answers, change plans, proposed diffs, verification results, and a shareable <strong>final engineering report</strong> are produced for the UI. Every agent run is written to a <strong>replayable run store</strong>, so each result stays inspectable and reproducible.</p></div>
               </article>
             </div>
           </div>
@@ -842,23 +842,23 @@
             <div class="docs-walkthrough" aria-label="RiskOS architecture walkthrough">
               <article class="doc-step doc-step--blue">
                 <span class="doc-step-number">1</span>
-                <div><h6>Ingestion &amp; enrichment</h6><p>PaySim-style transactions — generated synthetically or ingested from a real PaySim CSV — are enriched with behavioral and contextual signals: amount versus the customer's average, device, geo distance, velocity, merchant risk, card-not-present, and the dataset's own fraud signal.</p></div>
+                <div><h6>Ingestion &amp; enrichment</h6><p><strong>PaySim-style transactions</strong> — generated synthetically or ingested from a real PaySim CSV — are enriched with <strong>behavioral and contextual signals</strong>: amount versus the customer's average, device, geo distance, velocity, merchant risk, card-not-present, and the dataset's own fraud signal.</p></div>
               </article>
               <article class="doc-step doc-step--purple">
                 <span class="doc-step-number">2</span>
-                <div><h6>Hybrid risk scoring</h6><p>A FastAPI backend scores every transaction with seven deterministic, explainable rules (<code>R-001…R-007</code>), then blends in a scikit-learn model for learned patterns. The rules set the score — the LLM never does — and the system degrades gracefully to rules-only if the model artifact is missing.</p></div>
+                <div><h6>Hybrid risk scoring</h6><p>A <strong>FastAPI backend</strong> scores every transaction with <strong>seven deterministic, explainable rules</strong> (<code>R-001…R-007</code>), then blends in a <strong>scikit-learn model</strong> for learned patterns. The <strong>rules set the score</strong> — the LLM never does — and the system <strong>degrades gracefully to rules-only</strong> if the model artifact is missing.</p></div>
               </article>
               <article class="doc-step doc-step--purple">
                 <span class="doc-step-number">3</span>
-                <div><h6>Automated response</h6><p>A response orchestrator maps the score to a band and an action — approve, monitor, customer verification, hold, or escalate — so low-risk traffic clears automatically and only genuine risk ever reaches a person.</p></div>
+                <div><h6>Automated response</h6><p>A <strong>response orchestrator</strong> maps the score to a band and an action — <strong>approve, monitor, customer verification, hold, or escalate</strong> — so low-risk traffic clears automatically and only genuine risk ever reaches a person.</p></div>
               </article>
               <article class="doc-step doc-step--red">
                 <span class="doc-step-number">4</span>
-                <div><h6>Auth, RBAC &amp; AI evidence</h6><p>JWT auth and role-based permissions gate every endpoint. Anthropic Claude writes grounded evidence packets that explain the triggered signals — with a deterministic mock fallback so the demo never breaks, and SMS step-up (Twilio) kept off in deployment.</p></div>
+                <div><h6>Auth, RBAC &amp; AI evidence</h6><p><strong>JWT auth and role-based permissions</strong> gate every endpoint. <strong>Anthropic Claude</strong> writes <strong>grounded evidence packets</strong> that explain the triggered signals — with a deterministic <strong>mock fallback</strong> so the demo never breaks, and SMS step-up (Twilio) kept off in deployment.</p></div>
               </article>
               <article class="doc-step doc-step--green">
                 <span class="doc-step-number">5</span>
-                <div><h6>Persistence &amp; console</h6><p>SQLAlchemy persists transactions, investigations, scores, rules, reviewer decisions, and the audit log to SQLite/Postgres. A Next.js console on Vercel renders role-scoped dashboards, live metrics, and the investigation queue — with a cold-start demo fallback.</p></div>
+                <div><h6>Persistence &amp; console</h6><p><strong>SQLAlchemy</strong> persists transactions, investigations, scores, rules, reviewer decisions, and the audit log to <strong>SQLite/Postgres</strong>. A <strong>Next.js console on Vercel</strong> renders role-scoped dashboards, live metrics, and the investigation queue — with a cold-start demo fallback.</p></div>
               </article>
             </div>
           </div>
@@ -1061,23 +1061,23 @@
             <div class="docs-walkthrough" aria-label="D.I.Y.A architecture walkthrough">
               <article class="doc-step doc-step--blue">
                 <span class="doc-step-number">1</span>
-                <div><h6>Delivery &amp; auth</h6><p>The React SPA is delivered through CloudFront + S3. Students, professors, TA/staff, and admins authenticate via Cognito and reach the backend through a REST/GraphQL API Gateway — one secure front door for every role.</p></div>
+                <div><h6>Delivery &amp; auth</h6><p>The React SPA is delivered through <strong>CloudFront + S3</strong>. Students, professors, TA/staff, and admins authenticate via <strong>Cognito</strong> and reach the backend through a <strong>REST/GraphQL API Gateway</strong> — one secure front door for every role.</p></div>
               </article>
               <article class="doc-step doc-step--purple">
                 <span class="doc-step-number">2</span>
-                <div><h6>Serverless backend</h6><p>Lambda runs business logic and routing; Aurora PostgreSQL holds users, groups, questions, and workflow data; SNS sends notifications and announcements; and Step Functions orchestrate the asynchronous AI workflow so long-running steps never block a request.</p></div>
+                <div><h6>Serverless backend</h6><p><strong>Lambda</strong> runs business logic and routing; <strong>Aurora PostgreSQL</strong> holds users, groups, questions, and workflow data; <strong>SNS</strong> sends notifications and announcements; and <strong>Step Functions</strong> orchestrate the asynchronous AI workflow so long-running steps never block a request.</p></div>
               </article>
               <article class="doc-step doc-step--purple">
                 <span class="doc-step-number">3</span>
-                <div><h6>DIYA Intelligence Layer</h6><p>The AI Workflow Engine performs topic classification, duplicate detection, answer orchestration, confidence scoring, and professor escalation — all behind a <strong>swappable Model Provider Layer</strong> (Claude API / self-hosted LLM / OpenAI), so no single vendor is load-bearing.</p></div>
+                <div><h6>DIYA Intelligence Layer</h6><p>The <strong>AI Workflow Engine</strong> performs topic classification, duplicate detection, answer orchestration, confidence scoring, and professor escalation — all behind a <strong>swappable Model Provider Layer</strong> (Claude API / self-hosted LLM / OpenAI), so no single vendor is load-bearing.</p></div>
               </article>
               <article class="doc-step doc-step--red">
                 <span class="doc-step-number">4</span>
-                <div><h6>RAG &amp; Knowledge Layer</h6><p>Course documents — syllabi, lecture notes, assignments — land in S3; a Lambda ingests, chunks, and embeds them; and OpenSearch provides vector search and semantic retrieval that grounds every AI answer in the course's own material rather than the open internet.</p></div>
+                <div><h6>RAG &amp; Knowledge Layer</h6><p>Course documents — syllabi, lecture notes, assignments — land in <strong>S3</strong>; a <strong>Lambda</strong> ingests, chunks, and embeds them; and <strong>OpenSearch</strong> provides <strong>vector search and semantic retrieval</strong> that grounds every AI answer in the course's own material rather than the open internet.</p></div>
               </article>
               <article class="doc-step doc-step--green">
                 <span class="doc-step-number">5</span>
-                <div><h6>Observability &amp; analytics</h6><p>CloudWatch (logs, metrics, alarms), QuickSight (dashboards), EventBridge (events &amp; scheduling), AWS Backup (retention), and WAF (security) make the platform operable and safe — the production-grade scaffolding around the product.</p></div>
+                <div><h6>Observability &amp; analytics</h6><p><strong>CloudWatch</strong> (logs, metrics, alarms), <strong>QuickSight</strong> (dashboards), <strong>EventBridge</strong> (events &amp; scheduling), <strong>AWS Backup</strong> (retention), and <strong>WAF</strong> (security) make the platform operable and safe — the production-grade scaffolding around the product.</p></div>
               </article>
             </div>
           </div>
@@ -1381,15 +1381,15 @@
       <h2 class="section-title">Resume</h2>
       <p class="section-sub">My full resume, embedded below. You can scroll through it here, or open it full-screen / download a copy.</p>
       <div class="resume-actions">
-        <a class="btn btn-primary" href="assets/madhav-suri-resume.pdf" target="_blank" rel="noopener">Open Full Screen</a>
-        <a class="btn btn-secondary" href="assets/madhav-suri-resume.pdf" download>Download PDF</a>
+        <a class="btn btn-primary" href="assets/madhav-suri-resume-v2.pdf" target="_blank" rel="noopener">Open Full Screen</a>
+        <a class="btn btn-secondary" href="assets/madhav-suri-resume-v2.pdf" download>Download PDF</a>
       </div>
       <div class="resume-embed card">
-        <object class="resume-object" data="assets/madhav-suri-resume.pdf#view=FitH" type="application/pdf" aria-label="Madhav Suri resume PDF">
-          <iframe class="resume-frame" src="assets/madhav-suri-resume.pdf#view=FitH" title="Madhav Suri resume PDF" loading="lazy"></iframe>
+        <object class="resume-object" data="assets/madhav-suri-resume-v2.pdf#view=FitH" type="application/pdf" aria-label="Madhav Suri resume PDF">
+          <iframe class="resume-frame" src="assets/madhav-suri-resume-v2.pdf#view=FitH" title="Madhav Suri resume PDF" loading="lazy"></iframe>
           <p class="resume-fallback">
             Your browser can't display the embedded PDF.
-            <a href="assets/madhav-suri-resume.pdf" target="_blank" rel="noopener">Open the resume in a new tab</a>.
+            <a href="assets/madhav-suri-resume-v2.pdf" target="_blank" rel="noopener">Open the resume in a new tab</a>.
           </p>
         </object>
       </div>
@@ -1405,7 +1405,7 @@
         </p>
         <div class="contact-actions">
           <a class="btn btn-primary" href="mailto:Surimadhav06@gmail.com">Surimadhav06@gmail.com</a>
-          <a class="btn btn-secondary" href="assets/madhav-suri-resume.pdf" target="_blank" rel="noopener">View Resume</a>
+          <a class="btn btn-secondary" href="assets/madhav-suri-resume-v2.pdf" target="_blank" rel="noopener">View Resume</a>
         </div>
         <div class="contact-links">
           <a href="https://github.com/madhav-suri" target="_blank" rel="noopener">GitHub</a>
