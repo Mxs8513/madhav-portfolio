@@ -100,7 +100,18 @@
               <li><a href="#riskos-pipeline">The Transaction-to-Decision Pipeline</a></li>
             </ul>
           </li>
-          <li><a href="#diya">D.I.Y.A</a></li>
+          <li class="sidebar-group sidebar-group--nested" data-nav-group="diya">
+            <div class="sidebar-link-row">
+              <a href="#diya">D.I.Y.A</a>
+              <button class="sidebar-disclosure" type="button" aria-label="Toggle D.I.Y.A documentation links" aria-expanded="false" aria-controls="sidebar-diya">
+                <svg viewBox="0 0 24 24" aria-hidden="true"><path d="m6 9 6 6 6-6" /></svg>
+              </button>
+            </div>
+            <ul class="sidebar-subnav sidebar-subnav--nested" id="sidebar-diya" hidden>
+              <li><a href="#diya-architecture">System Design — Cloud Architecture</a></li>
+              <li><a href="#diya-ai-engine">The DIYA AI Workflow Engine</a></li>
+            </ul>
+          </li>
         </ul>
       </li>
       <li><a href="#research">Research</a></li>
@@ -1002,9 +1013,111 @@
             <ul class="pill-list">
               <li>React</li><li>Vite</li><li>TypeScript</li><li>Node.js</li><li>Express</li><li>SQLite</li><li>JWT</li><li>Anthropic Claude</li><li>RAG</li><li>Transformers.js</li><li>GitHub Actions</li><li>REST APIs</li>
             </ul>
-            <p class="links-note">Live at <strong>diya-main.vercel.app</strong>. Demo video coming soon.</p>
+            <p class="links-note">Live at <strong>diya-main.vercel.app</strong>. Full system design and AI engine below.</p>
           </div>
         </div>
+
+        <section class="project-docs" aria-labelledby="diya-docs-title">
+          <header class="docs-intro">
+            <span class="docs-kicker">System Documentation</span>
+            <h4 id="diya-docs-title">How D.I.Y.A Answers Students, Grounds Itself in Course Material, and Escalates to Professors</h4>
+            <p>
+              These diagrams connect the D.I.Y.A product to its design: a cloud-ready system architecture, and
+              the AI Workflow Engine that classifies questions, removes duplicates, answers them grounded in the
+              course's own materials via RAG, scores its own confidence, and routes anything uncertain to a
+              professor. The current build runs this logic on an Express + SQLite backend; the architecture
+              diagram shows how it maps onto a serverless AWS deployment.
+            </p>
+          </header>
+
+          <div class="docs-block" id="diya-architecture">
+            <div class="docs-heading">
+              <span>Diagram 01</span>
+              <h5>System Design — Cloud Architecture</h5>
+              <p>Read left to right: users hit a CDN-fronted SPA and an authenticated API, a serverless backend runs the workflow, and the DIYA intelligence and RAG layers ground every AI answer.</p>
+            </div>
+            <figure class="docs-figure">
+              <a href="assets/diya-system-architecture.png" target="_blank" rel="noopener" aria-label="Open the full-size D.I.Y.A system architecture diagram">
+                <img
+                  src="assets/diya-system-architecture.png"
+                  loading="lazy"
+                  decoding="async"
+                  alt="D.I.Y.A AWS architecture: university users reach a React SPA via CloudFront and S3, authenticate through Cognito, and call an API Gateway; a serverless backend uses Lambda, Aurora PostgreSQL, SNS, and Step Functions; a DIYA Intelligence Layer runs the AI Workflow Engine behind a swappable Model Provider Layer (Claude / self-hosted LLM / OpenAI); a RAG and Knowledge Layer uses S3, Lambda, and OpenSearch for vector retrieval; and an observability layer adds CloudWatch, QuickSight, EventBridge, Backup, and WAF"
+                />
+              </a>
+              <figcaption>The cloud-deployment topology — CDN-delivered SPA, authenticated serverless backend, a swappable AI intelligence layer, RAG-backed knowledge retrieval, and full observability. The implemented build runs the same intelligence and RAG logic on Express + SQLite.</figcaption>
+            </figure>
+
+            <div class="docs-walkthrough" aria-label="D.I.Y.A architecture walkthrough">
+              <article class="doc-step doc-step--blue">
+                <span class="doc-step-number">1</span>
+                <div><h6>Delivery &amp; auth</h6><p>The React SPA is delivered through CloudFront + S3. Students, professors, TA/staff, and admins authenticate via Cognito and reach the backend through a REST/GraphQL API Gateway — one secure front door for every role.</p></div>
+              </article>
+              <article class="doc-step doc-step--purple">
+                <span class="doc-step-number">2</span>
+                <div><h6>Serverless backend</h6><p>Lambda runs business logic and routing; Aurora PostgreSQL holds users, groups, questions, and workflow data; SNS sends notifications and announcements; and Step Functions orchestrate the asynchronous AI workflow so long-running steps never block a request.</p></div>
+              </article>
+              <article class="doc-step doc-step--purple">
+                <span class="doc-step-number">3</span>
+                <div><h6>DIYA Intelligence Layer</h6><p>The AI Workflow Engine performs topic classification, duplicate detection, answer orchestration, confidence scoring, and professor escalation — all behind a <strong>swappable Model Provider Layer</strong> (Claude API / self-hosted LLM / OpenAI), so no single vendor is load-bearing.</p></div>
+              </article>
+              <article class="doc-step doc-step--red">
+                <span class="doc-step-number">4</span>
+                <div><h6>RAG &amp; Knowledge Layer</h6><p>Course documents — syllabi, lecture notes, assignments — land in S3; a Lambda ingests, chunks, and embeds them; and OpenSearch provides vector search and semantic retrieval that grounds every AI answer in the course's own material rather than the open internet.</p></div>
+              </article>
+              <article class="doc-step doc-step--green">
+                <span class="doc-step-number">5</span>
+                <div><h6>Observability &amp; analytics</h6><p>CloudWatch (logs, metrics, alarms), QuickSight (dashboards), EventBridge (events &amp; scheduling), AWS Backup (retention), and WAF (security) make the platform operable and safe — the production-grade scaffolding around the product.</p></div>
+              </article>
+            </div>
+          </div>
+
+          <div class="docs-block docs-block--recovery" id="diya-ai-engine">
+            <div class="docs-heading">
+              <span>Diagram 02</span>
+              <h5>The DIYA AI Workflow Engine — How the AI Model Works</h5>
+              <p>Internal orchestration for question answering, professor escalation, and course-grounded interventions — the engine that makes D.I.Y.A more than a forum.</p>
+            </div>
+            <figure class="docs-figure">
+              <a href="assets/diya-ai-workflow-engine.png" target="_blank" rel="noopener" aria-label="Open the full-size D.I.Y.A AI Workflow Engine diagram">
+                <img
+                  src="assets/diya-ai-workflow-engine.png"
+                  loading="lazy"
+                  decoding="async"
+                  alt="D.I.Y.A AI Workflow Engine: a student question flows through topic classification, duplicate detection, RAG retrieval, answer draft generation, confidence scoring, and routing/escalation; high-confidence answers go to the student while low-confidence ones go to a professor review queue; a parallel track does cluster detection, intervention recommendation, announcement drafting, and outcome tracking; all behind a swappable Model Provider Layer and backed by a workflow DB, approved-answers store, vector index, and AI metrics/audit logs"
+                />
+              </a>
+              <figcaption>The engine pipeline — green is a high-confidence answer served instantly, orange is escalation to the professor queue, and the lower track turns repeated confusion into proactive interventions. State persists to a workflow DB, an approved-answers store, a vector index, and audit logs.</figcaption>
+            </figure>
+
+            <div class="docs-walkthrough docs-walkthrough--recovery" aria-label="D.I.Y.A AI engine walkthrough">
+              <article class="doc-step doc-step--blue">
+                <span class="doc-step-number">1</span>
+                <div><h6>Classify the question</h6><p>A student question (alongside course materials and professor actions) enters the engine, which classifies it into one of <strong>12 academic topics</strong>, with a keyword-rule fallback when the model is unavailable — so routing keeps working even with no API key.</p></div>
+              </article>
+              <article class="doc-step doc-step--purple">
+                <span class="doc-step-number">2</span>
+                <div><h6>Kill duplicates instantly</h6><p>Jaccard similarity over the last 80 questions in the group (threshold <code>0.45</code>) catches the same question asked differently. If it matches one that already has a <em>professor-verified</em> answer, that answer is served immediately — bypassing the queue and incrementing its usage count.</p></div>
+              </article>
+              <article class="doc-step doc-step--purple">
+                <span class="doc-step-number">3</span>
+                <div><h6>Answer, grounded in course material (RAG)</h6><p>For new questions the engine embeds the text with <code>all-MiniLM-L6-v2</code>, runs cosine similarity over the course's chunked materials, injects the top-4 chunks into Claude, and drafts a <strong>course-grounded answer that cites its source files</strong> — not generic internet knowledge.</p></div>
+              </article>
+              <article class="doc-step doc-step--red">
+                <span class="doc-step-number">4</span>
+                <div><h6>Score confidence &amp; route</h6><p>Claude self-rates the answer <code>0.0–1.0</code>. At or above <code>0.55</code> it's served to the student immediately; below the threshold — or if generation fails — it's routed to the <strong>professor review queue</strong>. Humans stay in charge of every uncertain case.</p></div>
+              </article>
+              <article class="doc-step doc-step--green">
+                <span class="doc-step-number">5</span>
+                <div><h6>Turn confusion into interventions</h6><p>In parallel, cluster detection finds repeated confusion, recommends an intervention (review session / office hours / resource), drafts a professor-ready announcement, and tracks the outcome — all persisted to the workflow DB, approved-answers store, vector index, and AI metrics/audit logs.</p></div>
+              </article>
+            </div>
+
+            <aside class="docs-scope docs-scope--recovery">
+              <strong>Trust boundary:</strong> AI assists, professors decide. The model drafts and self-scores, but anything below the 0.55 confidence threshold — or any failure — escalates to a professor review queue; answers are grounded in the course's own materials with cited sources; and the Model Provider Layer is swappable (Claude / self-hosted / OpenAI) so the workflow never depends on a single vendor. With no API key, every step degrades to a rule-based fallback and the app still works.
+            </aside>
+          </div>
+        </section>
       </article>
     </section>
 
