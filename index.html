@@ -810,9 +810,9 @@
               <p>Read top to bottom: transactions are ingested and enriched, scored and decided by the FastAPI risk backend, then persisted and served to a role-scoped Next.js console.</p>
             </div>
             <figure class="docs-figure">
-              <a href="assets/riskos-system-architecture.png" target="_blank" rel="noopener" aria-label="Open the full-size RiskOS system architecture diagram">
+              <a href="assets/riskos-system-architecture-v2.png" target="_blank" rel="noopener" aria-label="Open the full-size RiskOS system architecture diagram">
                 <img
-                  src="assets/riskos-system-architecture.png"
+                  src="assets/riskos-system-architecture-v2.png"
                   loading="lazy"
                   decoding="async"
                   alt="RiskOS architecture in three layers: a transaction event stream (simulated / PaySim) with ingestion sources feeds a FastAPI processing engine — a risk orchestrator coordinating a rules-based risk engine, case management, an AI evidence agent, a policy agent, and the reviewer workflow, plus an audit and metrics pipeline — which commits to an operational and audit data store; infrastructure spans Kafka/Redpanda, PostgreSQL, S3/MinIO, Redis, Prometheus, Grafana, and Docker"
@@ -852,9 +852,9 @@
               <p>RiskOS's defining feature: every transaction is scored by explainable rules plus ML, auto-handled when it's safe, and routed to an audited human review when it isn't.</p>
             </div>
             <figure class="docs-figure">
-              <a href="assets/riskos-decision-pipeline.png" target="_blank" rel="noopener" aria-label="Open the full-size RiskOS closed-loop fraud operations lifecycle diagram">
+              <a href="assets/riskos-decision-pipeline-v2.png" target="_blank" rel="noopener" aria-label="Open the full-size RiskOS closed-loop fraud operations lifecycle diagram">
                 <img
-                  src="assets/riskos-decision-pipeline.png"
+                  src="assets/riskos-decision-pipeline-v2.png"
                   loading="lazy"
                   decoding="async"
                   alt="RiskOS closed-loop fraud operations lifecycle: a transaction arrives, explainable risk scoring (7 deterministic rules plus optional ML) and a response orchestrator assign a decision band — Low auto-approve, Medium monitor, Elevated step-up, High customer verification, Critical open investigation — which flows to an investigation case, AI evidence and policy check, and human review; decision outcomes feed an audit log, metrics, and a continuous-improvement loop back into scoring"
