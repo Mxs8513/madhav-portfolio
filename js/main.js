@@ -39,12 +39,18 @@
   const sidebarLinks = document.querySelectorAll(".sidebar-links a");
   const disclosures = document.querySelectorAll(".sidebar-disclosure");
   const projectsGroup = document.querySelector('[data-nav-group="projects"]');
-  const streamforgeGroup = document.querySelector('[data-nav-group="streamforge"]');
+  // Every nested project group (streamforge, repopulse, riskos, diya, …) —
+  // discovered dynamically so the scroll-spy covers them all, not just the first.
+  const nestedGroups = [...document.querySelectorAll('.sidebar-group--nested[data-nav-group]')];
+
+  const rowOf = (g) => g && g.querySelector(":scope > .sidebar-link-row");
+  const discOf = (g) => g && g.querySelector(":scope > .sidebar-link-row .sidebar-disclosure");
 
   const setExpanded = (button, expanded) => {
+    if (!button) return;
     const panel = document.getElementById(button.getAttribute("aria-controls"));
     button.setAttribute("aria-expanded", String(expanded));
-    panel.toggleAttribute("hidden", !expanded);
+    if (panel) panel.toggleAttribute("hidden", !expanded);
   };
 
   disclosures.forEach((button) =>
@@ -59,15 +65,21 @@
     toggle.setAttribute("aria-expanded", String(open));
   });
 
+  // The section ids each project group owns (its own anchor + its sub-links).
+  nestedGroups.forEach((g) => {
+    g._ids = new Set(
+      [...g.querySelectorAll('a[href^="#"]')].map((a) => a.getAttribute("href").slice(1))
+    );
+  });
+  const projectIds = new Set(["projects"]);
+  nestedGroups.forEach((g) => g._ids.forEach((id) => projectIds.add(id)));
+
   sidebarLinks.forEach((link) =>
     link.addEventListener("click", () => {
-      if (link.getAttribute("href") === "#projects") {
-        setExpanded(projectsGroup.querySelector(":scope > .sidebar-link-row .sidebar-disclosure"), true);
-      }
-      if (link.getAttribute("href") === "#streamforge") {
-        setExpanded(projectsGroup.querySelector(":scope > .sidebar-link-row .sidebar-disclosure"), true);
-        setExpanded(streamforgeGroup.querySelector(":scope > .sidebar-link-row .sidebar-disclosure"), true);
-      }
+      const id = (link.getAttribute("href") || "").slice(1);
+      if (projectIds.has(id)) setExpanded(discOf(projectsGroup), true);
+      const g = nestedGroups.find((grp) => grp._ids.has(id));
+      if (g) setExpanded(discOf(g), true);
       document.body.classList.remove("menu-open");
       toggle.setAttribute("aria-expanded", "false");
     })
@@ -78,20 +90,6 @@
     .map((link) => document.querySelector(link.getAttribute("href")))
     .filter(Boolean);
 
-  const projectIds = new Set([
-    "projects",
-    "streamforge",
-    "streamforge-architecture",
-    "streamforge-recovery",
-    "repopulse",
-    "riskos",
-    "diya",
-  ]);
-  const streamforgeIds = new Set([
-    "streamforge",
-    "streamforge-architecture",
-    "streamforge-recovery",
-  ]);
   let previousId = null;
 
   const setActive = (id) => {
@@ -100,30 +98,57 @@
     );
 
     const inProjects = projectIds.has(id);
-    const inStreamForge = streamforgeIds.has(id);
-    projectsGroup.querySelector(":scope > .sidebar-link-row").classList.toggle("is-context", inProjects);
-    streamforgeGroup.querySelector(":scope > .sidebar-link-row").classList.toggle("is-context", inStreamForge);
+    rowOf(projectsGroup).classList.toggle("is-context", inProjects);
+    nestedGroups.forEach((g) => rowOf(g).classList.toggle("is-context", g._ids.has(id)));
 
+    // Only touch the accordion when the active section actually changes, so we
+    // never fight the user's manual toggles on every scroll frame.
     if (id !== previousId) {
-      setExpanded(projectsGroup.querySelector(":scope > .sidebar-link-row .sidebar-disclosure"), inProjects);
-      setExpanded(streamforgeGroup.querySelector(":scope > .sidebar-link-row .sidebar-disclosure"), inStreamForge);
+      setExpanded(discOf(projectsGroup), inProjects);
+      nestedGroups.forEach((g) => setExpanded(discOf(g), g._ids.has(id)));
       previousId = id;
     }
   };
 
+  // rAF-throttled so scrolling never triggers a layout read per scroll event.
+  let ticking = false;
   const onScroll = () => {
-    // The active section is the last one whose top has passed 1/3 of the viewport.
-    const probe = window.scrollY + window.innerHeight / 3;
-    let current = sections[0];
-    for (const section of sections) {
-      const sectionTop = section.getBoundingClientRect().top + window.scrollY;
-      if (sectionTop <= probe) current = section;
-    }
-    if (current) setActive(current.id);
+    if (ticking) return;
+    ticking = true;
+    requestAnimationFrame(() => {
+      const probe = window.scrollY + window.innerHeight / 3;
+      let current = sections[0];
+      for (const section of sections) {
+        if (section.getBoundingClientRect().top + window.scrollY <= probe) current = section;
+      }
+      if (current) setActive(current.id);
+      ticking = false;
+    });
   };
 
   window.addEventListener("scroll", onScroll, { passive: true });
   onScroll();
+})();
+
+// ----- Play project demo videos only while on-screen (cuts decode lag) -----
+(function () {
+  const videos = document.querySelectorAll(".project-visual--video video");
+  if (!videos.length || !("IntersectionObserver" in window)) return;
+  const io = new IntersectionObserver(
+    (entries) => {
+      entries.forEach((entry) => {
+        const v = entry.target;
+        if (entry.isIntersecting) {
+          const p = v.play();
+          if (p && p.catch) p.catch(() => {});
+        } else {
+          v.pause();
+        }
+      });
+    },
+    { threshold: 0.2 }
+  );
+  videos.forEach((v) => io.observe(v));
 })();
 
 // ----- Research document tabs (Paper / Poster) -----

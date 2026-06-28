@@ -394,6 +394,8 @@
               <a href="assets/streamforge-system-architecture.png" target="_blank" rel="noopener" aria-label="Open the full-size StreamForge system architecture diagram">
                 <img
                   src="assets/streamforge-system-architecture.png"
+                  width="1536"
+                  height="1024"
                   loading="lazy"
                   decoding="async"
                   alt="StreamForge architecture showing Kafka ingestion, a Go coordinator, three stateful workers, BadgerDB window state, staged commits, MinIO storage, Apache Iceberg, Prometheus, Grafana, and Docker"
@@ -444,6 +446,8 @@
               <a href="assets/streamforge-fault-recovery-storyboard.png" target="_blank" rel="noopener" aria-label="Open the full-size StreamForge fault recovery storyboard">
                 <img
                   src="assets/streamforge-fault-recovery-storyboard.png"
+                  width="1672"
+                  height="941"
                   loading="lazy"
                   decoding="async"
                   alt="Three-step StreamForge recovery storyboard showing normal operation, a worker heartbeat timeout, and state restoration with partition reassignment from the last completed checkpoint"
@@ -606,6 +610,8 @@
               <a href="assets/repopulse-system-architecture.svg" target="_blank" rel="noopener" aria-label="Open the full-size RepoPulse system architecture diagram">
                 <img
                   src="assets/repopulse-system-architecture.png"
+                  width="2960"
+                  height="2360"
                   loading="lazy"
                   decoding="async"
                   alt="RepoPulse architecture: GitHub repository source via Octokit, a Next.js orchestration layer, an indexer/classifier, a multi-stage retrieval pipeline, a planner and diff generator over an OpenAI to Groq to Anthropic to mock provider chain with a cost guard and prompt cache, a safety and human-approval gate, and grounded outputs with a replayable run store"
@@ -648,6 +654,8 @@
               <a href="assets/repopulse-safe-change-workflow.svg" target="_blank" rel="noopener" aria-label="Open the full-size RepoPulse safe change workflow diagram">
                 <img
                   src="assets/repopulse-safe-change-workflow.png"
+                  width="2960"
+                  height="2720"
                   loading="lazy"
                   decoding="async"
                   alt="RepoPulse safe change workflow: a change request passes a safety gate that refuses unsafe intent, then task classification, grounded retrieval, a change plan (planned), a proposed diff (diff_generated), diff verification (pass/warn/fail), a required human approval gate (approve or reject), an optional sandbox trial-run, and an approved, logged, reported result — with every step appended to a replayable run store"
@@ -824,6 +832,8 @@
               <a href="assets/riskos-system-architecture-v2.png" target="_blank" rel="noopener" aria-label="Open the full-size RiskOS system architecture diagram">
                 <img
                   src="assets/riskos-system-architecture-v2.png"
+                  width="1672"
+                  height="941"
                   loading="lazy"
                   decoding="async"
                   alt="RiskOS architecture in three layers: a transaction event stream (simulated / PaySim) with ingestion sources feeds a FastAPI processing engine — a risk orchestrator coordinating a rules-based risk engine, case management, an AI evidence agent, a policy agent, and the reviewer workflow, plus an audit and metrics pipeline — which commits to an operational and audit data store; infrastructure spans Kafka/Redpanda, PostgreSQL, S3/MinIO, Redis, Prometheus, Grafana, and Docker"
@@ -866,6 +876,8 @@
               <a href="assets/riskos-decision-pipeline-v2.png" target="_blank" rel="noopener" aria-label="Open the full-size RiskOS closed-loop fraud operations lifecycle diagram">
                 <img
                   src="assets/riskos-decision-pipeline-v2.png"
+                  width="1448"
+                  height="1086"
                   loading="lazy"
                   decoding="async"
                   alt="RiskOS closed-loop fraud operations lifecycle: a transaction arrives, explainable risk scoring (7 deterministic rules plus optional ML) and a response orchestrator assign a decision band — Low auto-approve, Medium monitor, Elevated step-up, High customer verification, Critical open investigation — which flows to an investigation case, AI evidence and policy check, and human review; decision outcomes feed an audit log, metrics, and a continuous-improvement loop back into scoring"
@@ -1040,6 +1052,8 @@
               <a href="assets/diya-system-architecture.png" target="_blank" rel="noopener" aria-label="Open the full-size D.I.Y.A system architecture diagram">
                 <img
                   src="assets/diya-system-architecture.png"
+                  width="1448"
+                  height="1086"
                   loading="lazy"
                   decoding="async"
                   alt="D.I.Y.A AWS architecture: university users reach a React SPA via CloudFront and S3, authenticate through Cognito, and call an API Gateway; a serverless backend uses Lambda, Aurora PostgreSQL, SNS, and Step Functions; a DIYA Intelligence Layer runs the AI Workflow Engine behind a swappable Model Provider Layer (Claude / self-hosted LLM / OpenAI); a RAG and Knowledge Layer uses S3, Lambda, and OpenSearch for vector retrieval; and an observability layer adds CloudWatch, QuickSight, EventBridge, Backup, and WAF"
@@ -1082,6 +1096,8 @@
               <a href="assets/diya-ai-workflow-engine.png" target="_blank" rel="noopener" aria-label="Open the full-size D.I.Y.A AI Workflow Engine diagram">
                 <img
                   src="assets/diya-ai-workflow-engine.png"
+                  width="1672"
+                  height="941"
                   loading="lazy"
                   decoding="async"
                   alt="D.I.Y.A AI Workflow Engine: a student question flows through topic classification, duplicate detection, RAG retrieval, answer draft generation, confidence scoring, and routing/escalation; high-confidence answers go to the student while low-confidence ones go to a professor review queue; a parallel track does cluster detection, intervention recommendation, announcement drafting, and outcome tracking; all behind a swappable Model Provider Layer and backed by a workflow DB, approved-answers store, vector index, and AI metrics/audit logs"
