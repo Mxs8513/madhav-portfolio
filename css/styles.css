@@ -1281,6 +1281,24 @@ a { color: var(--accent); }
   line-height: 1.65;
 }
 
+/* Purple emphasis to match the project copy template */
+.doc-step p strong,
+.doc-step p em {
+  font-weight: 600;
+  font-style: normal;
+  color: var(--accent-dark);
+}
+
+.doc-step p code {
+  font-family: var(--mono);
+  font-size: 0.86em;
+  color: var(--accent-dark);
+  background: var(--accent-tint);
+  border: 1px solid var(--accent-border);
+  border-radius: 5px;
+  padding: 1px 5px;
+}
+
 .docs-scope {
   margin-top: 20px;
   padding: 17px 20px;
