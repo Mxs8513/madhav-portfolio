@@ -308,7 +308,12 @@
           <div class="metric"><b>3</b><span>Distributed workers</span></div>
         </div>
 
-        <div class="project-body">
+        <details class="project-disclosure">
+          <summary>
+            <span class="project-disclosure-label"><strong>System Design &amp; Feature Implementation</strong><small>Project story, technical decisions, core features, and stack</small></span>
+            <svg viewBox="0 0 24 24" aria-hidden="true"><path d="m6 9 6 6 6-6" /></svg>
+          </summary>
+          <div class="project-body">
           <div class="project-desc">
             <h4 class="story-title">The Story</h4>
             <p>
@@ -370,9 +375,15 @@
             </ul>
             <p class="links-note">Built and benchmarked in 2026. Source and reproducible test harness on GitHub.</p>
           </div>
-        </div>
+          </div>
+        </details>
 
-        <section class="streamforge-docs" aria-labelledby="streamforge-docs-title">
+        <details class="project-disclosure project-disclosure--docs">
+          <summary>
+            <span class="project-disclosure-label"><strong>Architecture &amp; Fault Recovery Documentation</strong><small>System architecture, checkpoint flow, and measured crash recovery</small></span>
+            <svg viewBox="0 0 24 24" aria-hidden="true"><path d="m6 9 6 6 6-6" /></svg>
+          </summary>
+          <section class="streamforge-docs" aria-labelledby="streamforge-docs-title">
           <header class="docs-intro">
             <span class="docs-kicker">System Documentation</span>
             <h4 id="streamforge-docs-title">How StreamForge Moves, Commits, and Recovers Data</h4>
@@ -478,7 +489,8 @@
               <strong>Correctness boundary:</strong> the no-failure path is bit-exact exactly-once. Under the measured mid-stream crash, checkpoint visibility remains atomic and no committed window appears twice, but replay across the recovery boundary makes aggregate semantics effectively-once until a Chandy-Lamport-style in-flight snapshot closes that residual.
             </aside>
           </div>
-        </section>
+          </section>
+        </details>
       </article>
 
       <!-- ——————— PROJECT 2 · REPOPULSE ——————— -->
@@ -514,7 +526,12 @@
           ></video>
         </div>
 
-        <div class="project-body">
+        <details class="project-disclosure">
+          <summary>
+            <span class="project-disclosure-label"><strong>System Design &amp; Feature Implementation</strong><small>Grounded retrieval, safe planning, approval gates, and stack</small></span>
+            <svg viewBox="0 0 24 24" aria-hidden="true"><path d="m6 9 6 6 6-6" /></svg>
+          </summary>
+          <div class="project-body">
           <div class="project-desc">
             <h4 class="story-title">The Story</h4>
             <p>
@@ -585,9 +602,15 @@
             </ul>
             <p class="links-note">Live at <strong>repopulse.live</strong>. Demo video above; full architecture below.</p>
           </div>
-        </div>
+          </div>
+        </details>
 
-        <section class="project-docs" aria-labelledby="repopulse-docs-title">
+        <details class="project-disclosure project-disclosure--docs">
+          <summary>
+            <span class="project-disclosure-label"><strong>Architecture &amp; Workflow Documentation</strong><small>End-to-end architecture and the human-approved safe change lifecycle</small></span>
+            <svg viewBox="0 0 24 24" aria-hidden="true"><path d="m6 9 6 6 6-6" /></svg>
+          </summary>
+          <section class="project-docs" aria-labelledby="repopulse-docs-title">
           <header class="docs-intro">
             <span class="docs-kicker">System Documentation</span>
             <h4 id="repopulse-docs-title">How RepoPulse Reads a Repo, Plans a Change, and Keeps a Human in the Loop</h4>
@@ -689,7 +712,8 @@
               <strong>Trust boundary:</strong> human approval is mandatory and enforced in the workflow itself — the safety gate runs before any AI call, the approval gate sits after verification, and neither can be bypassed by the prompt. The agent proposes; a person disposes. That is the whole point of RepoPulse.
             </aside>
           </div>
-        </section>
+          </section>
+        </details>
       </article>
 
       <!-- ——————— PROJECT 3 · RISKOS AI ——————— -->
@@ -732,7 +756,12 @@
           <div class="metric"><b>94.3%</b><span>Automation coverage</span></div>
         </div>
 
-        <div class="project-body">
+        <details class="project-disclosure">
+          <summary>
+            <span class="project-disclosure-label"><strong>System Design &amp; Feature Implementation</strong><small>Hybrid scoring, investigations, auditability, and stack</small></span>
+            <svg viewBox="0 0 24 24" aria-hidden="true"><path d="m6 9 6 6 6-6" /></svg>
+          </summary>
+          <div class="project-body">
           <div class="project-desc">
             <h4 class="story-title">The Story</h4>
             <p>
@@ -805,9 +834,15 @@
             </ul>
             <p class="links-note">Live at <strong>risk-osai.vercel.app</strong>. Demo video above; full architecture below.</p>
           </div>
-        </div>
+          </div>
+        </details>
 
-        <section class="project-docs" aria-labelledby="riskos-docs-title">
+        <details class="project-disclosure project-disclosure--docs">
+          <summary>
+            <span class="project-disclosure-label"><strong>Architecture &amp; Workflow Documentation</strong><small>Risk engine architecture and the transaction-to-decision lifecycle</small></span>
+            <svg viewBox="0 0 24 24" aria-hidden="true"><path d="m6 9 6 6 6-6" /></svg>
+          </summary>
+          <section class="project-docs" aria-labelledby="riskos-docs-title">
           <header class="docs-intro">
             <span class="docs-kicker">System Documentation</span>
             <h4 id="riskos-docs-title">How RiskOS Scores a Transaction, Decides a Response, and Keeps a Human in Charge</h4>
@@ -910,7 +945,8 @@
               <strong>Trust boundary:</strong> rules score, ML assists, AI explains, humans decide. Deterministic rules produce the risk score, the scikit-learn model only blends in learned patterns (and degrades to rules-only when absent), and the LLM only explains structured signals — it never sets the score or the verdict. Every Critical case requires a logged, attributable human review.
             </aside>
           </div>
-        </section>
+          </section>
+        </details>
       </article>
 
       <!-- ——————— PROJECT 4 · D.I.Y.A ——————— -->
@@ -953,7 +989,12 @@
           <div class="metric"><b>$2/mo</b><span>Cost-controlled AI</span></div>
         </div>
 
-        <div class="project-body">
+        <details class="project-disclosure">
+          <summary>
+            <span class="project-disclosure-label"><strong>System Design &amp; Feature Implementation</strong><small>Secure AI workflow, RAG grounding, cost controls, and stack</small></span>
+            <svg viewBox="0 0 24 24" aria-hidden="true"><path d="m6 9 6 6 6-6" /></svg>
+          </summary>
+          <div class="project-body">
           <div class="project-desc">
             <h4 class="story-title">The Story</h4>
             <p>
@@ -1023,9 +1064,15 @@
             </ul>
             <p class="links-note">Live at <strong>diya-main.vercel.app</strong>. Full system design and AI engine below.</p>
           </div>
-        </div>
+          </div>
+        </details>
 
-        <section class="project-docs" aria-labelledby="diya-docs-title">
+        <details class="project-disclosure project-disclosure--docs">
+          <summary>
+            <span class="project-disclosure-label"><strong>Architecture &amp; Workflow Documentation</strong><small>Cloud system design and the professor-reviewed AI workflow</small></span>
+            <svg viewBox="0 0 24 24" aria-hidden="true"><path d="m6 9 6 6 6-6" /></svg>
+          </summary>
+          <section class="project-docs" aria-labelledby="diya-docs-title">
           <header class="docs-intro">
             <span class="docs-kicker">System Documentation</span>
             <h4 id="diya-docs-title">How D.I.Y.A Answers Students, Grounds Itself in Course Material, and Escalates to Professors</h4>
@@ -1129,7 +1176,8 @@
               <strong>Trust boundary:</strong> AI assists, professors decide. The model drafts and self-scores, but anything below the 0.55 confidence threshold — or any failure — escalates to a professor review queue; answers are grounded in the course's own materials with cited sources; and the Model Provider Layer is swappable (Claude / self-hosted / OpenAI) so the workflow never depends on a single vendor. With no API key, every step degrades to a rule-based fallback and the app still works.
             </aside>
           </div>
-        </section>
+          </section>
+        </details>
       </article>
     </section>
 

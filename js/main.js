@@ -43,6 +43,16 @@
   // discovered dynamically so the scroll-spy covers them all, not just the first.
   const nestedGroups = [...document.querySelectorAll('.sidebar-group--nested[data-nav-group]')];
 
+  const openContainingDetails = (target) => {
+    const parents = [];
+    let details = target && target.closest("details");
+    while (details) {
+      parents.unshift(details);
+      details = details.parentElement && details.parentElement.closest("details");
+    }
+    parents.forEach((parent) => { parent.open = true; });
+  };
+
   const rowOf = (g) => g && g.querySelector(":scope > .sidebar-link-row");
   const discOf = (g) => g && g.querySelector(":scope > .sidebar-link-row .sidebar-disclosure");
 
@@ -77,6 +87,8 @@
   sidebarLinks.forEach((link) =>
     link.addEventListener("click", () => {
       const id = (link.getAttribute("href") || "").slice(1);
+      const target = id && document.getElementById(id);
+      openContainingDetails(target);
       if (projectIds.has(id)) setExpanded(discOf(projectsGroup), true);
       const g = nestedGroups.find((grp) => grp._ids.has(id));
       if (g) setExpanded(discOf(g), true);
@@ -119,6 +131,7 @@
       const probe = window.scrollY + window.innerHeight / 3;
       let current = sections[0];
       for (const section of sections) {
+        if (!section.getClientRects().length) continue;
         if (section.getBoundingClientRect().top + window.scrollY <= probe) current = section;
       }
       if (current) setActive(current.id);
@@ -127,6 +140,26 @@
   };
 
   window.addEventListener("scroll", onScroll, { passive: true });
+  document.querySelectorAll(".project-disclosure").forEach((details) =>
+    details.addEventListener("toggle", onScroll)
+  );
+
+  const revealHashTarget = () => {
+    const id = decodeURIComponent(window.location.hash.slice(1));
+    const target = id && document.getElementById(id);
+    if (!target) return;
+    openContainingDetails(target);
+    requestAnimationFrame(() => target.scrollIntoView());
+  };
+
+  document.querySelectorAll('a[href^="#"]').forEach((link) =>
+    link.addEventListener("click", () => {
+      const id = decodeURIComponent((link.getAttribute("href") || "").slice(1));
+      openContainingDetails(id && document.getElementById(id));
+    })
+  );
+  window.addEventListener("hashchange", revealHashTarget);
+  revealHashTarget();
   onScroll();
 })();
 
