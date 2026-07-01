@@ -1147,11 +1147,20 @@ a { color: var(--accent); }
 /* Project detail disclosures keep each main demo concise while preserving depth. */
 .project-disclosure {
   margin-top: 16px;
-  border-top: 1px solid var(--border-strong);
-  border-bottom: 1px solid var(--border-strong);
+  overflow: hidden;
+  background: #fbfaff;
+  border: 1px solid var(--accent-border);
+  border-radius: 6px;
+  box-shadow: 0 1px 2px rgba(45, 29, 74, 0.04);
+  transition: border-color 150ms ease, box-shadow 150ms ease;
 }
 
 .project-disclosure + .project-disclosure { margin-top: 12px; }
+
+.project-disclosure:hover {
+  border-color: #c4b5fd;
+  box-shadow: 0 3px 10px rgba(76, 48, 120, 0.08);
+}
 
 .project-disclosure > summary {
   min-height: 74px;
@@ -1159,7 +1168,7 @@ a { color: var(--accent); }
   align-items: center;
   justify-content: space-between;
   gap: 24px;
-  padding: 18px 4px;
+  padding: 18px 20px;
   color: var(--text);
   cursor: pointer;
   list-style: none;
@@ -1168,9 +1177,9 @@ a { color: var(--accent); }
 .project-disclosure > summary::-webkit-details-marker { display: none; }
 
 .project-disclosure > summary:focus-visible {
-  border-radius: 6px;
+  border-radius: 5px;
   outline: 2px solid var(--accent);
-  outline-offset: 4px;
+  outline-offset: -3px;
 }
 
 .project-disclosure-label {
@@ -1196,9 +1205,14 @@ a { color: var(--accent); }
 .project-disclosure > summary:hover .project-disclosure-label strong { color: var(--accent); }
 
 .project-disclosure > summary > svg {
-  width: 20px;
-  height: 20px;
+  width: 30px;
+  height: 30px;
+  padding: 6px;
   flex: 0 0 auto;
+  box-sizing: border-box;
+  background: #ffffff;
+  border: 1px solid var(--accent-border);
+  border-radius: 50%;
   fill: none;
   stroke: var(--text-faint);
   stroke-linecap: round;
@@ -1208,6 +1222,7 @@ a { color: var(--accent); }
 }
 
 .project-disclosure[open] > summary {
+  background: var(--accent-tint);
   border-bottom: 1px solid var(--border);
 }
 
@@ -1932,7 +1947,7 @@ a { color: var(--accent); }
 
   .streamforge-docs,
   .project-docs { margin-top: 56px; padding-top: 44px; }
-  .project-disclosure > summary { min-height: 68px; padding: 16px 0; gap: 16px; }
+  .project-disclosure > summary { min-height: 68px; padding: 16px; gap: 16px; }
   .project-disclosure-label strong { font-size: 15px; }
   .project-disclosure-label small { font-size: 12px; }
   .project-disclosure > .project-body { padding-top: 28px; padding-bottom: 28px; }
