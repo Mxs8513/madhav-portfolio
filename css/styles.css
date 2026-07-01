@@ -1144,6 +1144,91 @@ a { color: var(--accent); }
   gap: 48px;
 }
 
+/* Project detail disclosures keep each main demo concise while preserving depth. */
+.project-disclosure {
+  margin-top: 16px;
+  border-top: 1px solid var(--border-strong);
+  border-bottom: 1px solid var(--border-strong);
+}
+
+.project-disclosure + .project-disclosure { margin-top: 12px; }
+
+.project-disclosure > summary {
+  min-height: 74px;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 24px;
+  padding: 18px 4px;
+  color: var(--text);
+  cursor: pointer;
+  list-style: none;
+}
+
+.project-disclosure > summary::-webkit-details-marker { display: none; }
+
+.project-disclosure > summary:focus-visible {
+  border-radius: 6px;
+  outline: 2px solid var(--accent);
+  outline-offset: 4px;
+}
+
+.project-disclosure-label {
+  min-width: 0;
+  display: flex;
+  flex-direction: column;
+  gap: 4px;
+}
+
+.project-disclosure-label strong {
+  font-size: 16px;
+  font-weight: 650;
+  letter-spacing: 0;
+  transition: color 150ms ease;
+}
+
+.project-disclosure-label small {
+  color: var(--text-faint);
+  font-size: 13px;
+  line-height: 1.4;
+}
+
+.project-disclosure > summary:hover .project-disclosure-label strong { color: var(--accent); }
+
+.project-disclosure > summary > svg {
+  width: 20px;
+  height: 20px;
+  flex: 0 0 auto;
+  fill: none;
+  stroke: var(--text-faint);
+  stroke-linecap: round;
+  stroke-linejoin: round;
+  stroke-width: 2;
+  transition: stroke 150ms ease, transform 180ms ease;
+}
+
+.project-disclosure[open] > summary {
+  border-bottom: 1px solid var(--border);
+}
+
+.project-disclosure[open] > summary > svg {
+  stroke: var(--accent);
+  transform: rotate(180deg);
+}
+
+.project-disclosure > .project-body {
+  padding-top: 36px;
+  padding-bottom: 36px;
+}
+
+.project-disclosure > .streamforge-docs,
+.project-disclosure > .project-docs {
+  margin-top: 0;
+  padding-top: 36px;
+  padding-bottom: 16px;
+  border-top: 0;
+}
+
 /* StreamForge technical documentation */
 .streamforge-docs,
 .project-docs {
@@ -1847,6 +1932,12 @@ a { color: var(--accent); }
 
   .streamforge-docs,
   .project-docs { margin-top: 56px; padding-top: 44px; }
+  .project-disclosure > summary { min-height: 68px; padding: 16px 0; gap: 16px; }
+  .project-disclosure-label strong { font-size: 15px; }
+  .project-disclosure-label small { font-size: 12px; }
+  .project-disclosure > .project-body { padding-top: 28px; padding-bottom: 28px; }
+  .project-disclosure > .streamforge-docs,
+  .project-disclosure > .project-docs { margin-top: 0; padding-top: 28px; }
   .docs-block { margin-top: 44px; }
   .docs-block--recovery { margin-top: 56px; padding-top: 44px; }
   .docs-intro h4 { font-size: 26px; }
