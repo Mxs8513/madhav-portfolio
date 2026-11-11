@@ -269,6 +269,8 @@ a { color: var(--accent); }
 #repopulse,
 #riskos,
 #diya,
+#northbound,
+#northbound-verification,
 #streamforge-architecture,
 #streamforge-recovery {
   scroll-margin-top: 24px;
@@ -1899,6 +1901,8 @@ a { color: var(--accent); }
   #repopulse,
   #riskos,
   #diya,
+  #northbound,
+  #northbound-verification,
   #streamforge-architecture,
   #streamforge-recovery { scroll-margin-top: 76px; }
   .sidebar-foot {
