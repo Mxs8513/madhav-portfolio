@@ -18,7 +18,7 @@
   <meta property="og:site_name" content="Madhav Suri" />
   <meta property="og:url" content="https://madhavsuri.com/" />
   <meta property="og:title" content="Madhav Suri — Full-Stack &amp; AI Engineer" />
-  <meta property="og:description" content="Building distributed systems, AI platforms, and developer tools. Projects: StreamForge, RepoPulse Agent, RiskOS AI, D.I.Y.A." />
+  <meta property="og:description" content="Building distributed systems, AI platforms, and developer tools. Projects: StreamForge, RepoPulse Agent, RiskOS AI, D.I.Y.A, and NorthBound." />
   <meta property="og:image" content="https://madhavsuri.com/assets/og-image.png" />
   <meta property="og:image:width" content="1200" />
   <meta property="og:image:height" content="630" />
@@ -112,6 +112,17 @@
               <li><a href="#diya-ai-engine">The DIYA AI Workflow Engine</a></li>
             </ul>
           </li>
+          <li class="sidebar-group sidebar-group--nested" data-nav-group="northbound">
+            <div class="sidebar-link-row">
+              <a href="#northbound">NorthBound</a>
+              <button class="sidebar-disclosure" type="button" aria-label="Toggle NorthBound documentation links" aria-expanded="false" aria-controls="sidebar-northbound">
+                <svg viewBox="0 0 24 24" aria-hidden="true"><path d="m6 9 6 6 6-6" /></svg>
+              </button>
+            </div>
+            <ul class="sidebar-subnav sidebar-subnav--nested" id="sidebar-northbound" hidden>
+              <li><a href="#northbound-verification">How the Rewrite Is Verified</a></li>
+            </ul>
+          </li>
         </ul>
       </li>
       <li><a href="#research">Research</a></li>
@@ -198,7 +209,7 @@
             model, AI logic, and frontend experience connect into one usable
             product. Recently, I've been building systems like
             <a href="#streamforge">StreamForge</a>, <a href="#repopulse">RepoPulse Agent</a>, <a href="#riskos">RiskOS
-            AI</a>, and <a href="#diya">D.I.Y.A</a> to strengthen my
+            AI</a>, <a href="#diya">D.I.Y.A</a>, and <a href="#northbound">NorthBound</a> to strengthen my
             full-stack engineering, product thinking, and applied AI skills.
           </p>
           <p>
@@ -1177,6 +1188,75 @@
             </aside>
           </div>
           </section>
+        </details>
+      </article>
+      <!-- ——————— PROJECT 5 · NORTHBOUND ——————— -->
+      <article class="project card" id="northbound">
+        <header class="project-head">
+          <span class="project-number">Project 05 · HackUTD 2026</span>
+          <h3 class="project-name">NorthBound</h3>
+          <p class="project-category">Verified COBOL-to-Python Migration</p>
+          <p class="project-summary">
+            NorthBound uses <strong>NVIDIA Nemotron</strong> to rewrite legacy COBOL as Python, then
+            runs both versions on the same inputs. A rewrite is accepted only when
+            <strong>every recorded output matches</strong> the original character for character.
+          </p>
+          <div class="project-cta">
+            <a class="btn btn-secondary" href="https://github.com/pranavcheedalla/NorthBound" target="_blank" rel="noopener">GitHub</a>
+            <a class="btn btn-secondary" href="#northbound-verification">How verification works</a>
+          </div>
+        </header>
+
+        <div class="project-visual project-visual--img">
+          <a href="assets/northbound-verification.jpg" target="_blank" rel="noopener" aria-label="Open the full-size NorthBound screenshot">
+            <img src="assets/northbound-verification.jpg" width="1280" height="720" loading="lazy" decoding="async"
+              alt="NorthBound’s galaxy interface replaying the card settlement migration, with 28 of 28 COBOL outputs matched after a human-guided retry." />
+          </a>
+        </div>
+
+        <div class="metric-strip" aria-label="NorthBound retail banking demo results">
+          <div class="metric"><b>6 / 6</b><span>Demo programs verified</span></div>
+          <div class="metric"><b>163 / 163</b><span>Recorded outputs matched</span></div>
+          <div class="metric"><b>4 → 28</b><span>Settlement outputs matched</span></div>
+          <div class="metric"><b>1</b><span>Reviewer hint</span></div>
+        </div>
+
+        <details class="project-disclosure">
+          <summary>
+            <span class="project-disclosure-label"><strong>System Design &amp; Feature Implementation</strong><small>COBOL execution, exact-output checks, and a human-guided retry</small></span>
+            <svg viewBox="0 0 24 24" aria-hidden="true"><path d="m6 9 6 6 6-6" /></svg>
+          </summary>
+          <div class="project-body">
+            <div class="project-desc">
+              <h4 class="story-title">The Story</h4>
+              <p>
+                At HackUTD, our four-person team built a sample retail banking codebase to see where AI-assisted migration breaks.
+                One early settlement rewrite read the amount field as cents. The same input produced a net amount of $97.95 in
+                Python and $9,804.90 in COBOL. The verifier caught the discrepancy and surfaced the failing case for review.
+              </p>
+              <h4>My Contribution</h4>
+              <p>
+                I built the <strong>COBOL runtime and verification harness</strong>, including GnuCOBOL compilation,
+                subprogram linking, copybook resolution, and output recording in isolated run directories. I also helped integrate
+                the agents and turn recorded runs into an interactive walkthrough with inspectable mismatches and downloadable Python.
+              </p>
+              <h4 id="northbound-verification">How the Rewrite Is Verified</h4>
+              <ol class="feature-list">
+                <li><strong>Discover dependencies.</strong> Find shared copybooks and called programs so dependencies are migrated first.</li>
+                <li><strong>Record the baseline.</strong> Compile the original COBOL and capture its output for normal cases, edge cases, and invalid inputs.</li>
+                <li><strong>Rewrite and compare.</strong> Run Nemotron’s Python on the same inputs. Feed mismatches back into a retry and hold dependent modules if a rewrite fails verification.</li>
+                <li><strong>Use human feedback.</strong> In the settlement run, a reviewer clarified the amount format. The next rewrite went from 4 of 28 matching outputs to 28 of 28.</li>
+              </ol>
+              <p>Verification covers the inputs executed by the harness. The portfolio image shows a replay of the recorded Nemotron run.</p>
+            </div>
+            <div class="project-side">
+              <h4>Tech Stack</h4>
+              <ul class="pill-list">
+                <li>Python</li><li>GnuCOBOL</li><li>NVIDIA Nemotron</li><li>LangGraph</li><li>pytest</li><li>JavaScript</li><li>Canvas</li>
+              </ul>
+              <p class="links-note"><a href="https://github.com/pranavcheedalla/NorthBound/blob/main/docs/HANDOFF-demo.md" target="_blank" rel="noopener">Demo walkthrough and local setup</a></p>
+            </div>
+          </div>
         </details>
       </article>
     </section>
